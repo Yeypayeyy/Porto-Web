@@ -3,12 +3,14 @@
 :root {
   --background: #121513;
   --foreground: #f4f6f0;
+  --font-body: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Plus Jakarta Sans", Inter, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-body);
   --font-mono: "Courier New", Courier, monospace;
 }
 
@@ -22,9 +24,36 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(102, 195, 212, 0.16), transparent 28rem),
+    radial-gradient(circle at 86% 8%, rgba(168, 219, 79, 0.14), transparent 24rem),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  font-feature-settings: "kern", "liga", "calt";
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  letter-spacing: 0;
+}
+
+h1 {
+  font-weight: 750;
+}
+
+h2,
+h3 {
+  font-weight: 700;
+}
+
+p,
+li {
+  letter-spacing: 0;
 }
 
 ::selection {
@@ -38,4 +67,172 @@ a {
 
 button {
   font: inherit;
+}
+
+.gradient-text {
+  animation: gradient-pan 9s ease-in-out infinite;
+  background: linear-gradient(105deg, #f4f6f0 0%, #b7dcd7 32%, #a8db4f 58%, #66c3d4 82%, #f4f6f0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 220% 220%;
+  color: transparent;
+}
+
+.aurora-bg {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(102, 195, 212, 0.18), transparent 18rem),
+    radial-gradient(circle at 82% 14%, rgba(168, 219, 79, 0.18), transparent 18rem),
+    radial-gradient(circle at 60% 90%, rgba(183, 220, 215, 0.1), transparent 20rem),
+    linear-gradient(135deg, #121513 0%, #1b1e1d 52%, #16221e 100%);
+  background-size: 140% 140%;
+  animation: aurora-shift 14s ease-in-out infinite;
+}
+
+.fun-link {
+  position: relative;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.fun-link::after {
+  background: linear-gradient(90deg, #73bf3f, #66c3d4);
+  bottom: -4px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 180ms ease;
+  width: 100%;
+}
+
+.fun-link:hover {
+  color: #a8db4f;
+  transform: translateY(-1px);
+}
+
+.fun-link:hover::after {
+  transform: scaleX(1);
+}
+
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+.drift-soft {
+  animation: drift-soft 10s ease-in-out infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 5s ease-in-out infinite;
+}
+
+.shimmer-soft::before {
+  animation: shimmer-soft 6s ease-in-out infinite;
+  background: linear-gradient(115deg, transparent 18%, rgba(244, 246, 240, 0.22) 45%, transparent 72%);
+  content: "";
+  inset: -30%;
+  position: absolute;
+  transform: translateX(-45%) rotate(8deg);
+}
+
+.lift-card {
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.lift-card:hover {
+  background-color: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes drift-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(12px, -8px, 0);
+  }
+}
+
+@keyframes gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes aurora-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer-soft {
+  0%,
+  42% {
+    opacity: 0;
+    transform: translateX(-48%) rotate(8deg);
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78%,
+  100% {
+    opacity: 0;
+    transform: translateX(72%) rotate(8deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
