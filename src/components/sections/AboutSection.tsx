@@ -5,7 +5,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-[linear-gradient(135deg,#f4f6f0_0%,#f4f6f0_50%,#dcefed_76%,#b7dcd7_100%)] px-5 py-14 md:px-8"
+      className="relative overflow-hidden bg-[radial-gradient(circle_at_50%_20%,rgba(244,246,240,0.62)_0%,rgba(183,220,215,0.42)_22%,transparent_38%),radial-gradient(circle_at_82%_78%,rgba(115,191,63,0.58)_0%,rgba(115,191,63,0.32)_30%,transparent_54%),linear-gradient(135deg,#b7dcd7_0%,#66c3d4_52%,#a5dca1_100%)] px-5 py-14 md:px-8"
     >
       <div className="drift-soft absolute -left-10 bottom-10 h-28 w-28 rounded-full bg-[#73bf3f]/20 blur-2xl" />
       <div className="absolute right-8 top-8 rounded-full bg-[#73bf3f] px-4 py-2 text-xs font-semibold text-[#121513]">
@@ -24,7 +24,7 @@ export function AboutSection() {
             coordinating events, building partnerships, and improving practical
             workflows.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div id="stack" className="mt-6 flex scroll-mt-28 flex-wrap gap-2">
             {skills.slice(0, 4).map((skill) => (
               <span
                 key={skill}
