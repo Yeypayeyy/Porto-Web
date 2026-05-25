@@ -51,7 +51,18 @@ export function HeroSection() {
       id="home"
       className="relative -mt-2 overflow-hidden bg-[#050706] px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-20"
     >
+      <Image
+        src="/images/image 2.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center opacity-42"
+        aria-hidden="true"
+      />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(115,191,63,0.16),transparent_28rem),radial-gradient(circle_at_10%_82%,rgba(168,219,79,0.1),transparent_22rem)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#050706_0%,rgba(5,7,6,0.88)_42%,rgba(5,7,6,0.66)_100%)]" />
+      <div className="absolute inset-0 bg-[#73bf3f]/10 mix-blend-color" />
       <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(244,246,240,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(244,246,240,0.16)_1px,transparent_1px)] [background-size:64px_64px]" />
       <div className="absolute bottom-0 left-0 h-px w-full bg-[linear-gradient(90deg,transparent,#73bf3f_36%,#a8db4f_62%,transparent)]" />
 
