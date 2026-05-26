@@ -249,6 +249,102 @@ button {
   width: 1.9rem;
 }
 
+.hero-photo-card {
+  animation: hero-photo-float 8s ease-in-out infinite;
+  transform: translateY(0) rotate(-1deg);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.hero-photo-card:nth-child(even) {
+  transform: translateY(0) rotate(1deg);
+}
+
+.hero-photo-card:hover {
+  border-color: rgba(168, 219, 79, 0.45);
+  box-shadow: 0 30px 72px rgba(0, 0, 0, 0.42);
+}
+
+.project-showcase-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+    repeating-linear-gradient(45deg, rgba(47, 107, 67, 0.055) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(-45deg, rgba(47, 107, 67, 0.055) 0 2px, transparent 2px 18px);
+  background-size: auto, 144px 144px, 144px 144px;
+}
+
+.project-batik-element {
+  animation: project-batik-drift 8s ease-in-out infinite;
+  filter: hue-rotate(48deg) saturate(0.86);
+}
+
+.project-stitch-line {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(248, 250, 246, 0.92) 0 24px,
+    transparent 24px 40px
+  );
+}
+
+.project-slider {
+  border-radius: 18px;
+}
+
+.project-slider-button {
+  align-items: center;
+  backdrop-filter: blur(14px);
+  background: rgba(248, 250, 246, 0.9);
+  border: 1px solid rgba(47, 107, 67, 0.2);
+  border-radius: 999px;
+  box-shadow: 0 12px 26px rgba(31, 48, 36, 0.18);
+  color: #2f6b43;
+  display: inline-flex;
+  height: 2.75rem;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+  width: 2.75rem;
+}
+
+.project-slider-button:hover {
+  background: #255638;
+  color: #f8faf6;
+  box-shadow: 0 16px 34px rgba(47, 107, 67, 0.26);
+  transform: translateY(calc(-50% - 2px));
+}
+
+.project-slider-button:focus-visible {
+  outline: 3px solid rgba(255, 167, 43, 0.55);
+  outline-offset: 3px;
+}
+
+.project-slide-card {
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.project-slide-card:hover {
+  box-shadow: 0 28px 70px rgba(33, 71, 45, 0.28);
+  transform: translateY(-5px);
+}
+
+.project-preview-grid {
+  animation: project-preview-pan 14s linear infinite;
+  background:
+    linear-gradient(rgba(86, 255, 150, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(86, 255, 150, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 50% 38%, rgba(47, 107, 67, 0.72), transparent 14rem),
+    linear-gradient(135deg, rgba(47, 107, 67, 0.4), transparent 44%);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+}
+
 @supports (animation-timeline: scroll()) {
   .site-header,
   .site-header-panel,
@@ -427,6 +523,38 @@ button {
   50% {
     opacity: 0.9;
     transform: scale(1.08);
+  }
+}
+
+@keyframes hero-photo-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(1deg);
+  }
+}
+
+@keyframes project-preview-pan {
+  from {
+    background-position: 0 0, 0 0, center, center;
+  }
+
+  to {
+    background-position: 34px 34px, 34px 34px, center, center;
+  }
+}
+
+@keyframes project-batik-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--tw-rotate));
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(var(--tw-rotate));
   }
 }
 

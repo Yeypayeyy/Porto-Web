@@ -27,12 +27,21 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Organization Development Case Study",
+    title: "KMTETI Website",
     tag: "Featured",
-    status: "KMTETI FT UGM",
+    status: "KMTETI FT UGM, Website",
     summary:
-      "A leadership and team-development case study based on organization planning, member empowerment, and internal coordination.",
-    points: ["Team management", "Program planning", "Division alignment"],
+      "Official organization website for KMTETI FT UGM, built to present profile information, divisions, activities, services, and news in a clear digital experience.",
+    points: ["Next.js", "Tailwind CSS", "TypeScript"],
+    featured: true,
+  },
+  {
+    title: "Campaign Web",
+    tag: "Featured",
+    status: "Next.js, Tailwind CSS, TypeScript",
+    summary:
+      "Campaign website designed to present candidate profile, vision and mission, experience, work programs, gallery, testimonials, and contact information in one focused page.",
+    points: ["Next.js", "Tailwind CSS", "TypeScript"],
     featured: true,
   },
   {
