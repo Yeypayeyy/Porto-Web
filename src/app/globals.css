@@ -545,23 +545,6 @@ button {
     animation-name: header-nav-shrink;
   }
 
-  .hero-scroll-grid {
-    animation: hero-scroll-away 1ms linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 78vh;
-  }
-
-  .hero-backdrop {
-    animation: hero-backdrop-scroll 1ms linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 90vh;
-  }
-
-  .hero-photo-stage {
-    animation: hero-photo-stage-scroll 1ms linear both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 82vh;
-  }
 }
 
 @supports (animation-timeline: view()) {
@@ -784,40 +767,6 @@ button {
 
   50% {
     transform: scale(1.045) translate3d(-0.5%, -0.4%, 0);
-  }
-}
-
-@keyframes hero-scroll-away {
-  from {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  to {
-    opacity: 0.28;
-    transform: translate3d(0, -96px, 0) scale(0.98);
-  }
-}
-
-@keyframes hero-backdrop-scroll {
-  from {
-    opacity: 0.42;
-    transform: scale(1);
-  }
-
-  to {
-    opacity: 0.18;
-    transform: scale(1.12) translate3d(0, -4%, 0);
-  }
-}
-
-@keyframes hero-photo-stage-scroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(0, 72px, 0);
   }
 }
 
