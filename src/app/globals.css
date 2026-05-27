@@ -434,11 +434,6 @@ button {
   transform-origin: center right;
 }
 
-.footer-reveal,
-.footer-item {
-  animation: section-rise 760ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
-}
-
 .footer-item {
   transition:
     color 180ms ease,
@@ -575,9 +570,7 @@ button {
   .section-copy,
   .stitch-patch,
   .reveal-card,
-  .reveal-list > *,
-  .footer-reveal,
-  .footer-item {
+  .reveal-list > * {
     animation-duration: 1ms;
     animation-fill-mode: both;
     animation-timeline: view();
