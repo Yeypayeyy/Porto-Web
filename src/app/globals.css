@@ -267,6 +267,11 @@ button {
   box-shadow: 0 30px 72px rgba(0, 0, 0, 0.42);
 }
 
+.experience-memory-photo {
+  animation: experience-memory-drift 9s ease-in-out infinite;
+  transform-origin: center;
+}
+
 .project-showcase-bg {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
@@ -534,6 +539,17 @@ button {
 
   50% {
     transform: translate3d(0, -10px, 0) rotate(1deg);
+  }
+}
+
+@keyframes experience-memory-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--tw-rotate));
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(var(--tw-rotate));
   }
 }
 
