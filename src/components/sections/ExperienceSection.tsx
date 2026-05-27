@@ -130,7 +130,7 @@ export function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="relative isolate overflow-hidden bg-[#080b09] px-5 py-20 text-[#f4f6f0] md:px-8 md:py-24"
+      className="landing-section relative isolate overflow-hidden bg-[#080b09] px-5 py-20 text-[#f4f6f0] md:px-8 md:py-24"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(168,219,79,0.16),transparent_24rem),radial-gradient(circle_at_82%_76%,rgba(102,195,212,0.14),transparent_24rem)]" />
       <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(244,246,240,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(244,246,240,0.18)_1px,transparent_1px)] [background-size:56px_56px]" />
@@ -155,22 +155,25 @@ export function ExperienceSection() {
 
       <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(8,11,9,0.78),rgba(8,11,9,0.38)_46%,rgba(8,11,9,0.74))]" />
       <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(8,11,9,0.58),rgba(8,11,9,0.08)_44%,rgba(8,11,9,0.68))]" />
+      <div className="absolute bottom-0 left-0 z-30 h-6 w-full bg-[#2f6b43]">
+        <div className="project-stitch-line absolute inset-x-0 top-1/2 h-1 -translate-y-1/2" />
+      </div>
 
-      <div className="relative z-20 mx-auto flex min-h-[520px] max-w-5xl flex-col items-center justify-center text-center">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#a8db4f]">
+      <div className="section-reveal relative z-20 mx-auto flex min-h-[520px] max-w-5xl flex-col items-center justify-center text-center">
+        <p className="stitch-patch inline-flex w-fit rotate-[-2deg] rounded-[16px] border-2 border-dashed border-[#f3b41b] bg-white px-7 py-4 text-2xl font-black text-[#4c4d4a] shadow-[0_12px_28px_rgba(0,0,0,0.2)] md:px-8 md:py-5 md:text-3xl">
           Experience
         </p>
-        <h2 className="mt-5 max-w-4xl text-4xl font-black leading-tight text-[#f4f6f0] md:text-6xl">
+        <h2 className="section-title mt-5 max-w-4xl text-4xl font-black leading-tight text-[#f4f6f0] md:text-6xl">
           Di sela bangku kuliah, aku menemukan banyak ruang untuk bertumbuh.
         </h2>
-        <p className="mt-7 max-w-3xl text-lg font-medium leading-8 text-[#dce3dd] md:text-2xl md:leading-10">
+        <p className="section-copy mt-7 max-w-3xl text-lg font-medium leading-8 text-[#dce3dd] md:text-2xl md:leading-10">
           Lewat kepanitiaan, organisasi, rapat panjang, hari-H yang ramai, dan
           orang-orang yang berjalan bersama, aku belajar bahwa pengalaman bukan
           cuma tentang peran yang dipegang, tapi tentang jejak kecil yang
           membentuk cara berpikir, bekerja, dan memimpin.
         </p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
+        <div className="reveal-list mt-8 flex flex-wrap justify-center gap-2">
           {experienceSignals.map((signal) => (
             <span
               key={signal}
@@ -182,7 +185,7 @@ export function ExperienceSection() {
         </div>
 
         <Link
-          className="mt-10 inline-flex items-center gap-3 rounded-full bg-[#a8db4f] px-7 py-4 text-base font-black text-[#121513] shadow-[0_18px_42px_rgba(168,219,79,0.24)] transition hover:-translate-y-1 hover:bg-[#c1ee68] hover:shadow-[0_24px_54px_rgba(168,219,79,0.32)]"
+          className="landing-cta mt-10 inline-flex items-center gap-3 rounded-full bg-[#a8db4f] px-7 py-4 text-base font-black text-[#121513] shadow-[0_18px_42px_rgba(168,219,79,0.24)] transition hover:-translate-y-1 hover:bg-[#c1ee68] hover:shadow-[0_24px_54px_rgba(168,219,79,0.32)]"
           href="/experience"
         >
           Lihat cerita lengkapnya

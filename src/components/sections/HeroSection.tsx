@@ -32,6 +32,17 @@ const socialLinks = [
       </svg>
     ),
   },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/frlagee",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <path d="M17.5 6.5h.01" />
+      </svg>
+    ),
+  },
 ];
 
 const heroPhotos = [
@@ -69,7 +80,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative -mt-2 overflow-hidden bg-[#050706] px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-20"
+      className="landing-section hero-landing relative -mt-2 overflow-hidden bg-[#050706] px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-20"
     >
       <Image
         src="/images/image 2.png"
@@ -77,7 +88,7 @@ export function HeroSection() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center opacity-42"
+        className="hero-backdrop object-cover object-center opacity-42"
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(115,191,63,0.16),transparent_28rem),radial-gradient(circle_at_10%_82%,rgba(168,219,79,0.1),transparent_22rem)]" />
@@ -86,25 +97,25 @@ export function HeroSection() {
       <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(244,246,240,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(244,246,240,0.16)_1px,transparent_1px)] [background-size:64px_64px]" />
       <div className="absolute bottom-0 left-0 h-px w-full bg-[linear-gradient(90deg,transparent,#73bf3f_36%,#a8db4f_62%,transparent)]" />
 
-      <div className="relative z-10 mx-auto grid min-h-[calc(100svh-170px)] max-w-7xl items-center gap-12 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:py-16">
+      <div className="hero-scroll-grid relative z-10 mx-auto grid min-h-[calc(100svh-170px)] max-w-7xl items-center gap-12 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:py-16">
         <div className="max-w-5xl">
-          <p className="text-base font-medium text-[#f4f6f0] md:text-2xl">
+          <p className="landing-kicker text-base font-medium text-[#f4f6f0] md:text-2xl">
             Get to know more about AGEK!
           </p>
 
-          <h1 className="mt-8 max-w-5xl text-5xl font-black leading-[1.12] text-[#f4f6f0] md:text-7xl lg:text-[86px]">
+          <h1 className="landing-title mt-8 max-w-5xl text-5xl font-black leading-[1.12] text-[#f4f6f0] md:text-7xl lg:text-[86px]">
             Fullstack Developer
             <span className="block">focused on</span>
             <span className="block text-[#a8db4f]">Web3 Experiences</span>
           </h1>
 
-          <p className="mt-8 max-w-3xl text-lg font-medium leading-8 text-[#dce3dd] md:text-2xl md:leading-10">
+          <p className="landing-copy mt-8 max-w-3xl text-lg font-medium leading-8 text-[#dce3dd] md:text-2xl md:leading-10">
             Information Engineering student at Universitas Gadjah Mada building
             modern web apps, backend systems, and decentralized products that
             are useful, reliable, and ready to grow.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-5">
+          <div className="landing-actions mt-10 flex flex-wrap items-center gap-5">
             <Link
               className="inline-flex items-center gap-3 rounded-full bg-[#73bf3f] px-6 py-4 text-base font-black text-[#121513] shadow-[0_16px_34px_rgba(115,191,63,0.25)] ring-1 ring-[#a8db4f]/40 transition hover:bg-[#a8db4f] hover:shadow-[0_18px_40px_rgba(168,219,79,0.3)] md:px-8"
               href="/projects"
@@ -141,7 +152,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-3 text-xs font-bold uppercase text-[#b7dcd7]">
+          <div className="landing-tags mt-12 flex flex-wrap gap-3 text-xs font-bold uppercase text-[#b7dcd7]">
             {["Fullstack", "Backend", "Web3", ].map((item) => (
               <span
                 key={item}
@@ -153,7 +164,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[640px] lg:mr-0">
+        <div className="hero-photo-stage relative mx-auto w-full max-w-[640px] lg:mr-0">
           <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-[#73bf3f]/25 blur-2xl" />
           <div className="absolute -right-8 bottom-10 h-40 w-40 rounded-full bg-[#a8db4f]/20 blur-2xl" />
           <div className="absolute left-1/2 top-1/2 h-[76%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#73bf3f]/20" />

@@ -31,7 +31,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="project-showcase-bg relative overflow-hidden bg-[#f8faf6] px-5 py-16 text-[#202520] md:px-8"
+      className="landing-section project-showcase-bg relative overflow-hidden bg-[#f8faf6] px-5 py-16 text-[#202520] md:px-8"
     >
       <div className="absolute left-0 top-0 h-6 w-full bg-[#2f6b43]">
         <div className="project-stitch-line absolute inset-x-0 top-1/2 h-1 -translate-y-1/2" />
@@ -58,12 +58,12 @@ export function ProjectsSection() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-6xl pt-10">
+      <div className="section-reveal relative mx-auto max-w-6xl pt-10">
         <div className="grid items-center gap-7 lg:grid-cols-[220px_1fr_280px]">
-          <div className="inline-flex w-fit rotate-[-2deg] rounded-[16px] border-2 border-dashed border-[#f3b41b] bg-white px-8 py-5 text-3xl font-black text-[#4c4d4a] shadow-[0_12px_28px_rgba(35,42,35,0.12)]">
+          <div className="stitch-patch inline-flex w-fit rotate-[-2deg] rounded-[16px] border-2 border-dashed border-[#f3b41b] bg-white px-8 py-5 text-3xl font-black text-[#4c4d4a] shadow-[0_12px_28px_rgba(35,42,35,0.12)]">
             Projects
           </div>
-          <p className="max-w-3xl text-lg font-medium leading-8 text-[#303730] md:text-2xl md:leading-10">
+          <p className="section-copy max-w-3xl text-lg font-medium leading-8 text-[#303730] md:text-2xl md:leading-10">
             A collection of projects, experiments, and systems I have worked
             on, each shaped by curiosity, practical problem solving, and the
             goal of building digital experiences that feel useful and reliable.
@@ -89,7 +89,7 @@ export function ProjectsSection() {
           </Link>
         </div>
 
-        <div className="mt-14">
+        <div className="section-reveal section-reveal-late mt-14">
           <div className="mb-5 flex items-center justify-between gap-4">
             <p className="text-sm font-black uppercase tracking-[0.16em] text-[#2f6b43]">
               {activeProject + 1} / {projectCount}
@@ -127,7 +127,7 @@ export function ProjectsSection() {
                 return (
                   <article
                     key={`${project.title}-${offset}`}
-                    className={`project-slide-card lift-card relative shrink-0 overflow-hidden rounded-[18px] bg-[#050706] text-white shadow-[0_22px_52px_rgba(33,71,45,0.22)] ring-1 ring-[#2f6b43]/40 ${
+                    className={`project-slide-card lift-card reveal-card relative shrink-0 overflow-hidden rounded-[18px] bg-[#050706] text-white shadow-[0_22px_52px_rgba(33,71,45,0.22)] ring-1 ring-[#2f6b43]/40 ${
                       isActive
                         ? "min-h-[410px] w-full md:w-[58%]"
                         : "hidden min-h-[350px] md:block md:w-[24%] md:opacity-75"

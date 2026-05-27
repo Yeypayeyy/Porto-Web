@@ -140,6 +140,7 @@ button {
 }
 
 .site-header {
+  animation: header-drop 680ms cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
   padding: 0;
 }
 
@@ -160,6 +161,30 @@ button {
 
 .site-header-nav {
   height: 5.5rem;
+}
+
+.landing-header-item {
+  animation: header-item-rise 620ms cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
+}
+
+.landing-header-item:nth-child(1) {
+  animation-delay: 120ms;
+}
+
+.landing-header-nav .landing-header-item:nth-child(1) {
+  animation-delay: 220ms;
+}
+
+.landing-header-nav .landing-header-item:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.landing-header-nav .landing-header-item:nth-child(3) {
+  animation-delay: 380ms;
+}
+
+.site-header-nav > .landing-header-item:last-child {
+  animation-delay: 460ms;
 }
 
 .brand-mark-shape {
@@ -249,6 +274,72 @@ button {
   width: 1.9rem;
 }
 
+.hero-landing {
+  animation: section-soft-load 900ms ease both;
+}
+
+.hero-backdrop {
+  animation: hero-backdrop-drift 18s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.landing-kicker,
+.landing-title,
+.landing-copy,
+.landing-actions,
+.landing-tags,
+.hero-photo-stage {
+  animation: landing-rise 780ms cubic-bezier(0.2, 0.75, 0.2, 1) backwards;
+}
+
+.landing-kicker {
+  animation-delay: 80ms;
+}
+
+.landing-title {
+  animation-delay: 180ms;
+}
+
+.landing-copy {
+  animation-delay: 300ms;
+}
+
+.landing-actions {
+  animation-delay: 420ms;
+}
+
+.landing-tags {
+  animation-delay: 540ms;
+}
+
+.hero-photo-stage {
+  animation-delay: 280ms;
+}
+
+.landing-tags span,
+.hero-social-link {
+  animation: landing-pop 620ms cubic-bezier(0.2, 0.8, 0.24, 1.2) backwards;
+}
+
+.landing-tags span:nth-child(1),
+.hero-social-link:nth-child(1) {
+  animation-delay: 620ms;
+}
+
+.landing-tags span:nth-child(2),
+.hero-social-link:nth-child(2) {
+  animation-delay: 720ms;
+}
+
+.landing-tags span:nth-child(3),
+.hero-social-link:nth-child(3) {
+  animation-delay: 820ms;
+}
+
+.hero-social-link:nth-child(4) {
+  animation-delay: 920ms;
+}
+
 .hero-photo-card {
   animation: hero-photo-float 8s ease-in-out infinite;
   transform: translateY(0) rotate(-1deg);
@@ -286,11 +377,97 @@ button {
 }
 
 .project-stitch-line {
+  animation: stitch-run 18s linear infinite;
   background-image: repeating-linear-gradient(
     90deg,
     rgba(248, 250, 246, 0.92) 0 24px,
     transparent 24px 40px
   );
+  background-size: 40px 100%;
+}
+
+.section-reveal,
+.section-title,
+.section-copy,
+.stitch-patch,
+.reveal-card,
+.reveal-list > * {
+  animation: section-rise 760ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.section-reveal-late {
+  animation-delay: 120ms;
+}
+
+.section-title {
+  animation-delay: 110ms;
+}
+
+.section-copy {
+  animation-delay: 180ms;
+}
+
+.stitch-patch {
+  animation-name: patch-pop;
+}
+
+.reveal-list > *:nth-child(1),
+.reveal-card:nth-child(1) {
+  animation-delay: 90ms;
+}
+
+.reveal-list > *:nth-child(2),
+.reveal-card:nth-child(2) {
+  animation-delay: 170ms;
+}
+
+.reveal-list > *:nth-child(3),
+.reveal-card:nth-child(3) {
+  animation-delay: 250ms;
+}
+
+.reveal-list > *:nth-child(4) {
+  animation-delay: 330ms;
+}
+
+.contact-card {
+  transform-origin: center right;
+}
+
+.footer-reveal,
+.footer-item {
+  animation: section-rise 760ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.footer-item {
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.footer-item:hover {
+  color: #a8db4f;
+  transform: translateY(-2px);
+}
+
+.footer-item:nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.footer-item:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.footer-item:nth-child(3) {
+  animation-delay: 220ms;
+}
+
+.footer-item:nth-child(4) {
+  animation-delay: 290ms;
+}
+
+.footer-item:nth-child(5) {
+  animation-delay: 360ms;
 }
 
 .project-slider {
@@ -371,6 +548,64 @@ button {
 
   .site-header-nav {
     animation-name: header-nav-shrink;
+  }
+
+  .hero-scroll-grid {
+    animation: hero-scroll-away 1ms linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 78vh;
+  }
+
+  .hero-backdrop {
+    animation: hero-backdrop-scroll 1ms linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 90vh;
+  }
+
+  .hero-photo-stage {
+    animation: hero-photo-stage-scroll 1ms linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 82vh;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .section-reveal,
+  .section-title,
+  .section-copy,
+  .stitch-patch,
+  .reveal-card,
+  .reveal-list > *,
+  .footer-reveal,
+  .footer-item {
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 28%;
+  }
+
+  .section-reveal-late {
+    animation-range: entry 10% cover 32%;
+  }
+
+  .project-batik-element {
+    animation: project-batik-scroll 1ms linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  .experience-memory-photo {
+    animation: experience-memory-scroll 1ms linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  .project-stitch-line {
+    animation:
+      stitch-run 18s linear infinite,
+      stitch-scroll-dim 1ms linear both;
+    animation-timeline: auto, view();
+    animation-range: normal, entry 0% exit 100%;
   }
 }
 
@@ -454,6 +689,188 @@ button {
   background-color: rgba(255, 255, 255, 0.045);
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
+}
+
+@keyframes header-drop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes header-item-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes section-soft-load {
+  from {
+    opacity: 0.96;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes landing-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes section-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 38px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes patch-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) rotate(-4deg) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-2deg) scale(1);
+  }
+}
+
+@keyframes stitch-run {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40px 0;
+  }
+}
+
+@keyframes hero-backdrop-drift {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.045) translate3d(-0.5%, -0.4%, 0);
+  }
+}
+
+@keyframes hero-scroll-away {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    opacity: 0.28;
+    transform: translate3d(0, -96px, 0) scale(0.98);
+  }
+}
+
+@keyframes hero-backdrop-scroll {
+  from {
+    opacity: 0.42;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0.18;
+    transform: scale(1.12) translate3d(0, -4%, 0);
+  }
+}
+
+@keyframes hero-photo-stage-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 72px, 0);
+  }
+}
+
+@keyframes project-batik-scroll {
+  from {
+    opacity: 0.45;
+    transform: translate3d(0, 36px, 0) rotate(var(--tw-rotate)) scale(0.94);
+  }
+
+  45% {
+    opacity: 0.85;
+    transform: translate3d(0, 0, 0) rotate(var(--tw-rotate)) scale(1);
+  }
+
+  to {
+    opacity: 0.35;
+    transform: translate3d(0, -46px, 0) rotate(var(--tw-rotate)) scale(1.04);
+  }
+}
+
+@keyframes experience-memory-scroll {
+  from {
+    opacity: 0.48;
+    transform: translate3d(0, 54px, 0) rotate(var(--tw-rotate)) scale(0.96);
+  }
+
+  45% {
+    opacity: 0.9;
+    transform: translate3d(0, 0, 0) rotate(var(--tw-rotate)) scale(1);
+  }
+
+  to {
+    opacity: 0.42;
+    transform: translate3d(0, -68px, 0) rotate(var(--tw-rotate)) scale(1.03);
+  }
+}
+
+@keyframes stitch-scroll-dim {
+  from,
+  to {
+    opacity: 0.78;
+  }
+
+  45% {
+    opacity: 1;
+  }
 }
 
 @keyframes float-soft {
