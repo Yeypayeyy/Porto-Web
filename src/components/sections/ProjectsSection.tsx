@@ -2,31 +2,77 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { projects } from "@/data/portfolio";
 
-const batikElement = "/images/batik-element.webp";
-const projectImages: Record<string, string> = {
-  "KMTETI Website": "/images/Screenshot%202026-05-27%20014658.png",
-  "Campaign Web": "/images/Screenshot%202026-05-27%20020810.png",
-};
-const visibleProjectOffsets = [-1, 0, 1];
+const batikElement = "/UI/batik-element.webp";
 
 export function ProjectsSection() {
   const projectSlides = projects;
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const scrollFrameRef = useRef<number | null>(null);
   const [activeProject, setActiveProject] = useState(0);
   const projectCount = projectSlides.length;
 
+  const scrollToProject = useCallback((index: number) => {
+    const slider = sliderRef.current;
+    const slide = slider?.children[index] as HTMLElement | undefined;
+
+    if (!slider || !slide) {
+      return;
+    }
+
+    slide.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+    setActiveProject(index);
+  }, []);
+
   const showPreviousProject = () => {
-    setActiveProject((current) => (current - 1 + projectCount) % projectCount);
+    scrollToProject(Math.max(activeProject - 1, 0));
   };
 
   const showNextProject = () => {
-    setActiveProject((current) => (current + 1) % projectCount);
+    scrollToProject(Math.min(activeProject + 1, projectCount - 1));
   };
 
-  const getProjectIndex = (offset: number) =>
-    (activeProject + offset + projectCount) % projectCount;
+  const handleProjectScroll = () => {
+    const slider = sliderRef.current;
+
+    if (!slider || scrollFrameRef.current !== null) {
+      return;
+    }
+
+    scrollFrameRef.current = window.requestAnimationFrame(() => {
+      const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
+      const closestIndex = Array.from(slider.children).reduce(
+        (closest, child, index) => {
+          const slide = child as HTMLElement;
+          const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+          const distance = Math.abs(sliderCenter - slideCenter);
+
+          return distance < closest.distance ? { index, distance } : closest;
+        },
+        { index: 0, distance: Number.POSITIVE_INFINITY },
+      ).index;
+
+      setActiveProject(closestIndex);
+      scrollFrameRef.current = null;
+    });
+  };
+
+  const isFirstProject = activeProject === 0;
+  const isLastProject = activeProject === projectCount - 1;
+
+  useEffect(() => {
+    return () => {
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section
@@ -58,7 +104,7 @@ export function ProjectsSection() {
         aria-hidden="true"
       />
 
-      <div className="section-reveal relative mx-auto max-w-6xl pt-10">
+      <div className="section-reveal relative mx-auto max-w-7xl pt-10">
         <div className="grid items-center gap-7 lg:grid-cols-[220px_1fr_280px]">
           <div className="stitch-patch inline-flex w-fit rotate-[-2deg] rounded-[16px] border-2 border-dashed border-[#f3b41b] bg-white px-8 py-5 text-3xl font-black text-[#4c4d4a] shadow-[0_12px_28px_rgba(35,42,35,0.12)]">
             Projects
@@ -89,7 +135,7 @@ export function ProjectsSection() {
           </Link>
         </div>
 
-        <div className="section-reveal section-reveal-late mt-14">
+        <div className="section-reveal section-reveal-late mt-20">
           <div className="mb-5 flex items-center justify-between gap-4">
             <p className="text-sm font-black uppercase tracking-[0.16em] text-[#2f6b43]">
               {activeProject + 1} / {projectCount}
@@ -100,12 +146,13 @@ export function ProjectsSection() {
           <div className="project-carousel relative">
             <button
               type="button"
-              className="project-slider-button project-slider-button-prev absolute left-2 top-1/2 z-20 md:-left-5"
+              className="project-slider-button project-slider-button-prev absolute left-3 top-1/2 z-20 md:-left-5"
               onClick={showPreviousProject}
-              aria-label="Previous project"
+              disabled={isFirstProject}
+              aria-label="Project sebelumnya"
             >
               <svg
-                className="h-5 w-5"
+                className="h-6 w-6"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -118,34 +165,38 @@ export function ProjectsSection() {
               </svg>
             </button>
 
-            <div className="project-slider flex items-stretch justify-center gap-5 overflow-hidden px-10 py-2 md:px-8">
-              {visibleProjectOffsets.map((offset) => {
-                const project = projectSlides[getProjectIndex(offset)];
-                const isActive = offset === 0;
-                const projectImage = projectImages[project.title];
+            <div
+              ref={sliderRef}
+              className="project-slider flex snap-x snap-mandatory items-stretch gap-8 overflow-x-auto px-12 py-5 md:gap-10 md:px-16"
+              onScroll={handleProjectScroll}
+            >
+              {projectSlides.map((project, index) => {
+                const isActive = index === activeProject;
 
                 return (
-                  <article
-                    key={`${project.title}-${offset}`}
-                    className={`project-slide-card lift-card reveal-card relative shrink-0 overflow-hidden rounded-[18px] bg-[#050706] text-white shadow-[0_22px_52px_rgba(33,71,45,0.22)] ring-1 ring-[#2f6b43]/40 ${
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    key={project.title}
+                    className={`project-slide-card lift-card reveal-card group relative min-h-[500px] w-[min(84vw,720px)] shrink-0 snap-center overflow-hidden rounded-[18px] bg-[#050706] text-white shadow-[0_22px_52px_rgba(33,71,45,0.22)] ring-1 ring-[#2f6b43]/40 md:w-[620px] lg:w-[720px] ${
                       isActive
-                        ? "min-h-[410px] w-full md:w-[58%]"
-                        : "hidden min-h-[350px] md:block md:w-[24%] md:opacity-75"
+                        ? "opacity-100 ring-2 ring-[#ffa72b]/70"
+                        : "opacity-82"
                     }`}
+                    aria-label={`Lihat detail ${project.title}`}
                   >
                     <div className="flex h-full flex-col">
-                      <div className="relative min-h-[210px] overflow-hidden bg-[#09110d] md:min-h-[240px]">
-                        {projectImage ? (
+                      <div className="relative min-h-[260px] overflow-hidden bg-[#09110d] md:min-h-[330px]">
+                        {project.image ? (
                           <Image
-                            src={projectImage}
+                            src={project.image}
                             alt={`${project.title} preview`}
                             fill
                             sizes={
                               isActive
-                                ? "(min-width: 768px) 58vw, calc(100vw - 6rem)"
-                                : "24vw"
+                                ? "(min-width: 1024px) 720px, (min-width: 768px) 620px, 84vw"
+                                : "(min-width: 1024px) 720px, (min-width: 768px) 620px, 84vw"
                             }
-                            className="object-cover object-top"
+                            className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
                           />
                         ) : (
                           <>
@@ -157,10 +208,10 @@ export function ProjectsSection() {
                         )}
                       </div>
 
-                      <div className="relative flex flex-1 flex-col justify-end bg-[#050706] p-6 md:p-8">
+                      <div className="relative flex flex-1 flex-col justify-end bg-[#050706] p-7 md:p-10">
                         <h3
                           className={`font-black leading-tight ${
-                            isActive ? "text-2xl md:text-3xl" : "text-xl"
+                            isActive ? "text-3xl md:text-4xl" : "text-2xl"
                           }`}
                         >
                           {project.title}
@@ -168,12 +219,28 @@ export function ProjectsSection() {
                         <p
                           className={`mt-4 max-w-3xl font-medium text-[#dce3dd] ${
                             isActive
-                              ? "text-base leading-7 md:text-xl md:leading-8"
-                              : "line-clamp-3 text-sm leading-6"
+                              ? "text-base leading-8 md:text-xl md:leading-9"
+                              : "line-clamp-3 text-base leading-7"
                           }`}
                         >
                           {project.summary}
                         </p>
+                        <div className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#ffa72b] px-4 py-2 text-sm font-black text-[#1f2923] transition group-hover:bg-[#ffbf5f]">
+                          Lihat detail
+                          <svg
+                            className="h-4 w-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2.4"
+                            aria-hidden="true"
+                          >
+                            <path d="M7 17 17 7" />
+                            <path d="M9 7h8v8" />
+                          </svg>
+                        </div>
                         <div
                           className={`mt-5 items-center gap-3 text-sm font-bold text-[#dce3dd] ${
                             isActive ? "flex" : "hidden"
@@ -198,19 +265,20 @@ export function ProjectsSection() {
                         </div>
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 );
               })}
             </div>
 
             <button
               type="button"
-              className="project-slider-button project-slider-button-next absolute right-2 top-1/2 z-20 md:-right-5"
+              className="project-slider-button project-slider-button-next absolute right-3 top-1/2 z-20 md:-right-5"
               onClick={showNextProject}
-              aria-label="Next project"
+              disabled={isLastProject}
+              aria-label="Project berikutnya"
             >
               <svg
-                className="h-5 w-5"
+                className="h-6 w-6"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -224,16 +292,23 @@ export function ProjectsSection() {
             </button>
           </div>
 
-          <div className="mt-5 flex justify-center gap-2" aria-hidden="true">
+          <div className="mt-5 flex justify-center gap-2" aria-label="Pilih project">
             {projectSlides.map((project, index) => (
-              <span
+              <button
+                type="button"
                 key={project.title}
-                className={`h-2 rounded-full transition-all ${
-                  index === activeProject
-                    ? "w-8 bg-[#2f6b43]"
-                    : "w-2 bg-[#2f6b43]/35"
-                }`}
-              />
+                onClick={() => scrollToProject(index)}
+                aria-label={`Tampilkan ${project.title}`}
+                className="project-dot-button"
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all ${
+                    index === activeProject
+                      ? "w-8 bg-[#2f6b43]"
+                      : "w-2 bg-[#2f6b43]/35"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

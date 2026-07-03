@@ -25,9 +25,10 @@ export default function ProjectsPage() {
 
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {projects.map((project) => (
-              <article
+              <Link
                 key={project.title}
-                className="rounded-[8px] bg-[#24282b] p-6 ring-1 ring-white/10"
+                href={`/projects/${project.slug}`}
+                className="group rounded-[8px] bg-[#24282b] p-6 ring-1 ring-white/10 transition hover:-translate-y-1 hover:bg-[#2b3033] hover:ring-[#73bf3f]/45"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <span className="rounded-full border border-[#73bf3f]/40 px-3 py-1 text-[11px] font-semibold text-[#a8db4f]">
@@ -53,7 +54,23 @@ export default function ProjectsPage() {
                     </span>
                   ))}
                 </div>
-              </article>
+                <div className="mt-7 inline-flex items-center gap-2 text-sm font-black text-[#a8db4f]">
+                  Lihat detail
+                  <svg
+                    className="h-4 w-4 transition group-hover:translate-x-1"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.4"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m13 5 7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
