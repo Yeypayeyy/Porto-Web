@@ -80,7 +80,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="landing-section hero-landing relative -mt-2 overflow-hidden bg-[#050706] px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-20"
+      className="landing-section hero-landing relative -mt-2 overflow-hidden bg-[#011d3e] px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-20"
     >
       <Image
         src="/images/image 2.png"
@@ -91,36 +91,41 @@ export function HeroSection() {
         className="hero-backdrop object-cover object-center opacity-42"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(115,191,63,0.16),transparent_28rem),radial-gradient(circle_at_10%_82%,rgba(168,219,79,0.1),transparent_22rem)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#050706_0%,rgba(5,7,6,0.88)_42%,rgba(5,7,6,0.66)_100%)]" />
-      <div className="absolute inset-0 bg-[#73bf3f]/10 mix-blend-color" />
-      <div className="absolute inset-0 opacity-[0.1] [background-image:linear-gradient(rgba(244,246,240,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(244,246,240,0.16)_1px,transparent_1px)] [background-size:64px_64px]" />
-      <div className="absolute bottom-0 left-0 h-px w-full bg-[linear-gradient(90deg,transparent,#73bf3f_36%,#a8db4f_62%,transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_18%,rgba(86,179,191,0.3),transparent_28rem),radial-gradient(circle_at_10%_82%,rgba(249,193,87,0.18),transparent_22rem),radial-gradient(circle_at_48%_52%,rgba(177,198,222,0.12),transparent_20rem)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#011d3e_0%,rgba(2,50,105,0.92)_44%,rgba(39,83,88,0.66)_100%)]" />
+      <div className="absolute inset-0 bg-[#438c95]/18 mix-blend-color" />
+      <div className="absolute inset-0 opacity-[0.11] [background-image:linear-gradient(rgba(230,237,244,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(230,237,244,0.18)_1px,transparent_1px)] [background-size:64px_64px]" />
+      <div className="pointer-events-none absolute right-[7vw] top-28 hidden h-44 w-44 rounded-full border border-[#56b3bf]/30 md:block" />
+      <div className="pointer-events-none absolute right-[13vw] top-40 hidden h-20 w-20 rounded-full bg-[#f9c157]/18 blur-xl md:block" />
+      <div className="pointer-events-none absolute bottom-24 left-[6vw] hidden rounded-full border border-[#fef9ee]/18 px-5 py-2 text-xs font-black uppercase tracking-[0.34em] text-[#e6edf4]/75 md:block">
+        Build · Lead · Ship
+      </div>
+      <div className="absolute bottom-0 left-0 h-px w-full bg-[linear-gradient(90deg,transparent,#56b3bf_34%,#f9c157_62%,transparent)]" />
 
       <div className="hero-scroll-grid relative z-10 mx-auto grid min-h-[calc(100svh-170px)] max-w-7xl items-center gap-12 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:py-16">
         <div className="max-w-5xl">
-          <p className="landing-kicker text-base font-medium text-[#f4f6f0] md:text-2xl">
-            Get to know more about AGEK!
+          <p className="landing-kicker inline-flex items-center gap-3 rounded-full border border-[#56b3bf]/35 bg-[#fef9ee]/8 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#e6edf4] backdrop-blur md:text-sm">
+            <span className="h-2 w-2 rounded-full bg-[#f9c157] shadow-[0_0_18px_rgba(249,193,87,0.9)]" />
+            FrlAgee · UGM Information Engineering
           </p>
 
-          <h1 className="landing-title mt-8 max-w-5xl text-5xl font-black leading-[1.12] text-[#f4f6f0] md:text-7xl lg:text-[86px]">
-            Fullstack Developer
-            <span className="block">focused on</span>
-            <span className="block text-[#a8db4f]">Web3 Experiences</span>
+          <h1 className="landing-title mt-8 max-w-5xl text-5xl font-black leading-[1.02] text-[#fef9ee] md:text-7xl lg:text-[92px]">
+            Building web systems,
+            <span className="block text-[#f9c157]">Web3 products,</span>
+            <span className="block">and campus-scale teams.</span>
           </h1>
 
-          <p className="landing-copy mt-8 max-w-3xl text-lg font-medium leading-8 text-[#dce3dd] md:text-2xl md:leading-10">
-            Information Engineering student at Universitas Gadjah Mada building
-            modern web apps, backend systems, and decentralized products that
-            are useful, reliable, and ready to grow.
+          <p className="landing-copy mt-8 max-w-3xl text-lg font-medium leading-8 text-[#e6edf4] md:text-xl md:leading-9">
+            I connect engineering, Web3, partnerships, and event operations into
+            products people can use and teams people can trust.
           </p>
 
           <div className="landing-actions mt-10 flex flex-wrap items-center gap-5">
             <Link
-              className="inline-flex items-center gap-3 rounded-full bg-[#73bf3f] px-6 py-4 text-base font-black text-[#121513] shadow-[0_16px_34px_rgba(115,191,63,0.25)] ring-1 ring-[#a8db4f]/40 transition hover:bg-[#a8db4f] hover:shadow-[0_18px_40px_rgba(168,219,79,0.3)] md:px-8"
+              className="inline-flex items-center gap-3 rounded-full bg-[#f9c157] px-6 py-4 text-base font-black text-[#011d3e] shadow-[0_16px_34px_rgba(249,193,87,0.28)] ring-1 ring-[#facd79]/50 transition hover:bg-[#facd79] hover:shadow-[0_18px_40px_rgba(249,193,87,0.34)] md:px-8"
               href="/projects"
             >
-              See My Projects
+              Explore proof
               <svg
                 className="h-5 w-5"
                 viewBox="0 0 24 24"
@@ -152,11 +157,11 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="landing-tags mt-12 flex flex-wrap gap-3 text-xs font-bold uppercase text-[#b7dcd7]">
-            {["Fullstack", "Backend", "Web3", ].map((item) => (
+          <div className="landing-tags mt-12 flex flex-wrap gap-3 text-xs font-bold uppercase tracking-[0.16em] text-[#b1c6de]">
+            {["Fullstack", "Backend", "Web3", "Leadership"].map((item) => (
               <span
                 key={item}
-                className="border border-[#73bf3f]/25 bg-[#73bf3f]/8 px-4 py-2 text-[#dce3dd]"
+                className="border border-[#56b3bf]/30 bg-[#275358]/35 px-4 py-2 text-[#e6edf4]"
               >
                 {item}
               </span>
@@ -165,15 +170,15 @@ export function HeroSection() {
         </div>
 
         <div className="hero-photo-stage relative mx-auto w-full max-w-[640px] lg:mr-0">
-          <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-[#73bf3f]/25 blur-2xl" />
-          <div className="absolute -right-8 bottom-10 h-40 w-40 rounded-full bg-[#a8db4f]/20 blur-2xl" />
-          <div className="absolute left-1/2 top-1/2 h-[76%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#73bf3f]/20" />
+          <div className="absolute -left-8 top-10 h-32 w-32 rounded-full bg-[#56b3bf]/28 blur-2xl" />
+          <div className="absolute -right-8 bottom-10 h-40 w-40 rounded-full bg-[#f9c157]/18 blur-2xl" />
+          <div className="absolute left-1/2 top-1/2 h-[76%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#56b3bf]/22" />
 
           <div className="relative grid grid-cols-2 gap-4 sm:gap-5">
             {heroPhotos.map((photo) => (
               <figure
                 key={photo.src}
-                className={`hero-photo-card group relative overflow-hidden rounded-[16px] border border-white/10 bg-[#f4f6f0]/5 p-2 shadow-[0_24px_60px_rgba(0,0,0,0.34)] ${photo.className}`}
+                className={`hero-photo-card group relative overflow-hidden rounded-[16px] border border-[#e6edf4]/12 bg-[#275358]/20 p-2 shadow-[0_24px_60px_rgba(1,29,62,0.38)] ${photo.className}`}
                 style={{ animationDelay: photo.delay }}
               >
                 <Image
