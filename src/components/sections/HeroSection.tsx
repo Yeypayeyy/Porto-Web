@@ -1,9 +1,13 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { Reveal } from "@/components/motion/Reveal";
-import { Parallax } from "@/components/motion/Parallax";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+import { prefersReducedMotion } from "@/components/motion/motion-config";
 
 const socialLinks = [
   { label: "Email", href: "mailto:farrel.ag20@gmail.com" },
@@ -22,15 +26,76 @@ const marquee = [
 ];
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wordmarkRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const content = contentRef.current;
+    const wordmark = wordmarkRef.current;
+    if (!section || !content || !wordmark || prefersReducedMotion()) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Pin the hero for one viewport of scroll: the section below stays
+      // hidden until this scrubbed animation fully plays out, then it unpins.
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=55%",
+          scrub: true,
+          pin: true,
+          pinSpacing: true,
+        },
+      });
+
+      // Signature: the giant brand wordmark shrinks + rises toward the nav
+      // logo (top-left) as the hero scrolls away — the title "docks" into nav.
+      tl.to(
+        wordmark,
+        {
+          scale: 0.12,
+          y: -window.innerHeight * 0.42,
+          opacity: 0,
+          ease: "none",
+        },
+        0,
+      );
+
+      // Content lifts + fades so the hero clears out before the next section.
+      tl.to(content, { y: -80, opacity: 0, ease: "none" }, 0);
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative flex min-h-[100svh] flex-col overflow-hidden bg-bone text-ink"
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-[94rem] flex-1 flex-col justify-center px-6 pb-8 pt-28 md:px-12 md:pt-32">
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.78fr] lg:gap-16">
+      {/* Giant brand wordmark that docks into the nav on scroll */}
+      <div
+        ref={wordmarkRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-[16%] z-0 origin-top-left select-none px-6 md:px-12"
+      >
+        <span className="block font-display text-[22vw] font-black uppercase leading-none tracking-[-0.04em] text-rossoneri/[0.09]">
+          FrlAgee
+        </span>
+      </div>
+
+      <div
+        ref={contentRef}
+        className="relative z-10 mx-auto flex w-full max-w-[94rem] flex-1 flex-col justify-center px-6 pb-8 pt-28 md:px-12 md:pt-32"
+      >
+        <div>
           {/* Text */}
-          <div className="order-2 max-w-2xl lg:order-1">
+          <div className="max-w-5xl">
             <Reveal
               immediate
               className="mb-8 flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-ink/45"
@@ -43,7 +108,7 @@ export function HeroSection() {
             <TextReveal
               as="h1"
               immediate
-              className="font-display text-[clamp(2rem,4.6vw,3.6rem)] font-black uppercase leading-[1.0] tracking-[-0.03em]"
+              className="font-display text-[clamp(2.2rem,5.4vw,4.6rem)] font-black uppercase leading-[0.95] tracking-[-0.03em]"
             >
               <span className="block overflow-hidden pb-[0.12em] pt-[0.04em]">
                 <span data-line className="block">Building web systems,</span>
@@ -58,19 +123,8 @@ export function HeroSection() {
 
             <Reveal
               immediate
-              className="mt-7 max-w-md text-base leading-7 text-ink/60 md:text-lg md:leading-8"
+              className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9"
               delay={0.15}
-            >
-              <p>
-                I connect engineering, Web3, partnerships, and event operations
-                into products people use and teams people trust.
-              </p>
-            </Reveal>
-
-            <Reveal
-              immediate
-              className="mt-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9"
-              delay={0.2}
             >
               <MagneticButton className="w-full sm:w-auto">
                 <Link
@@ -109,36 +163,6 @@ export function HeroSection() {
               </div>
             </Reveal>
           </div>
-
-          {/* Portrait */}
-          <Reveal immediate className="relative order-1 lg:order-2" delay={0.1}>
-            <div className="relative">
-              <span
-                className="absolute -left-14 top-6 hidden rotate-180 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-ink/40 [writing-mode:vertical-rl] lg:block"
-                aria-hidden="true"
-              >
-                Portfolio — 2026
-              </span>
-              <div className="pointer-events-none absolute -right-3 -top-3 z-0 h-full w-full border border-rossoneri" />
-              <Parallax
-                as="div"
-                amount={-40}
-                className="relative z-10 h-[min(56vh,32rem)] w-full overflow-hidden bg-bone-soft"
-              >
-                <Image
-                  src="/images/farrel-4.jpg"
-                  alt="Muhammad Farrel Al Ghazy"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 34vw, 100vw"
-                  className="object-cover object-[center_18%] grayscale transition-[filter] duration-700 hover:grayscale-0"
-                />
-                <span className="absolute bottom-4 left-4 z-10 bg-ink px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-bone">
-                  Farrel · FrlAgee
-                </span>
-              </Parallax>
-            </div>
-          </Reveal>
         </div>
       </div>
 
@@ -151,7 +175,7 @@ export function HeroSection() {
               className="flex items-center gap-8 font-display text-2xl font-black uppercase tracking-[-0.01em] text-ink/85 md:text-3xl"
             >
               {item}
-              <span className="text-rossoneri">✦</span>
+              <span className="text-gold">✦</span>
             </span>
           ))}
         </div>

@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -1251,6 +1251,86 @@ button {
     height: 4.15rem;
   }
 }
+
+/* ── Intro Animation ─────────────────────────────────────────────── */
+
+.intro-overlay {
+  align-items: center;
+  background: var(--ink);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  will-change: transform;
+  z-index: 9999;
+}
+
+.intro-glow {
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  position: absolute;
+}
+
+.intro-glow--tl {
+  background: radial-gradient(circle, rgba(226, 0, 26, 0.28), transparent 65%);
+  height: 28rem;
+  left: -6rem;
+  top: -6rem;
+  width: 28rem;
+}
+
+.intro-glow--br {
+  background: radial-gradient(circle, rgba(201, 162, 75, 0.14), transparent 65%);
+  bottom: -8rem;
+  height: 24rem;
+  right: -4rem;
+  width: 24rem;
+}
+
+.intro-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.intro-monogram {
+  will-change: opacity, transform;
+}
+
+.intro-name {
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  font-stretch: 125%;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.intro-rule {
+  background: linear-gradient(90deg, var(--rossoneri), var(--rossoneri-deep));
+  height: 2px;
+  width: clamp(3rem, 10vw, 6.5rem);
+  will-change: transform;
+}
+
+.intro-tagline {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 1.8vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  will-change: opacity, transform;
+}
+
+/* ── End Intro Animation ─────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   *,
