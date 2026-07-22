@@ -7,7 +7,7 @@ import { Header } from "@/components/site/Header";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#121513] text-[#f4f6f0]">
+    <main className="min-h-screen bg-bone text-ink">
       <Header />
       <HeroSection />
       <ProjectsSection />

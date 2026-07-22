@@ -5,21 +5,21 @@ import { Header } from "@/components/site/Header";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#121513] text-[#f4f6f0]">
+    <main className="min-h-screen bg-[#121513] text-[#f7f5f2]">
       <Header />
       <section className="px-5 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
-          <Link className="text-sm font-semibold text-[#b7dcd7] underline" href="/">
+          <Link className="text-sm font-semibold text-[#c9a24b] underline" href="/">
             Back to home
           </Link>
           <div className="mt-8 grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-start">
             <div>
-              <p className="text-sm font-semibold text-[#a8db4f]">About</p>
+              <p className="text-sm font-semibold text-[#e2001a]">About</p>
               <h1 className="mt-3 text-5xl font-semibold leading-tight md:text-7xl">
                 Muhammad Farrel Al Ghazy
               </h1>
             </div>
-            <div className="rounded-[8px] bg-[#f4f6f0] p-7 text-[#121513] ring-1 ring-white/10">
+            <div className="rounded-[8px] bg-[#f7f5f2] p-7 text-[#121513] ring-1 ring-white/10">
               <h2 className="text-3xl font-semibold">
                 I connect teams, operations, and technology.
               </h2>
@@ -32,7 +32,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-[8px] bg-[#121513] p-5 text-white">
-                  <p className="text-xs font-semibold uppercase text-[#a8db4f]">
+                  <p className="text-xs font-semibold uppercase text-[#e2001a]">
                     Contact
                   </p>
                   <a
@@ -43,7 +43,7 @@ export default function AboutPage() {
                   </a>
                 </div>
                 <div className="rounded-[8px] bg-[#121513] p-5 text-white">
-                  <p className="text-xs font-semibold uppercase text-[#a8db4f]">
+                  <p className="text-xs font-semibold uppercase text-[#e2001a]">
                     Education
                   </p>
                   <p className="mt-3 text-sm font-bold">
