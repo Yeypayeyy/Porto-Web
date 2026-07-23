@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { Inter } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { IntroAnimation } from "@/components/motion/IntroAnimation";
+import { TransitionProvider } from "@/components/motion/TransitionContext";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  axes: ["wdth"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Muhammad Farrel Al Ghazy | Portfolio",
@@ -17,8 +25,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full antialiased", "font-sans", inter.variable)}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={cn("h-full antialiased font-sans", archivo.variable)}
+    >
+      <body className="min-h-full flex flex-col bg-bone">
+        <TransitionProvider>
+          <IntroAnimation />
+          <SmoothScroll>{children}</SmoothScroll>
+        </TransitionProvider>
+      </body>
     </html>
   );
 }

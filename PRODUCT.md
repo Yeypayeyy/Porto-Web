@@ -18,10 +18,10 @@ Modern, clean, and intentional. The experience should feel technically capable a
 
 ## Visual References
 
-- `https://amantajati.vercel.app/`: clean, modern, polished GSAP reference.
-- `https://pionir.ugm.ac.id/2026/`: high-impact, fun, memorable "wah" reference.
+- `https://www.amantajati.studio/`: clean, modern, polished smooth-scroll / motion reference (primary atmosphere reference).
+- AC Milan away jersey (2006/07): Rossoneri color identity — bone-white canvas, black + red structural blocks, rare Champions gold accent.
 
-The redesign should combine both moods: clean modern technical credibility from Amanta Jati, plus the playful high-energy spectacle from PIONIR UGM 2026. Avoid copying either site directly; use them as atmosphere references.
+The redesign combines clean modern technical credibility and rich scroll choreography from Amanta Jati with a bold Rossoneri visual identity. Use both as atmosphere references, not direct clones. See `DESIGN.md` for the exact palette and motion direction.
 
 ## Anti-references
 

@@ -1,10 +1,10 @@
 export function FocusSection() {
   return (
-    <section className="bg-[#f4f6f0] px-5 py-20 text-[#121513] md:px-8">
+    <section className="bg-[#f7f5f2] px-5 py-20 text-[#121513] md:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-center justify-between gap-8">
           <div className="max-w-xl">
-            <p className="text-xs font-black uppercase text-[#73bf3f]">
+            <p className="text-xs font-black uppercase text-[#e2001a]">
               Focus Area
             </p>
             <h2 className="mt-3 text-4xl font-black md:text-5xl">

@@ -24,12 +24,12 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <main className="min-h-screen bg-[#121513] text-[#f4f6f0]">
+    <main className="min-h-screen bg-[#121513] text-[#f7f5f2]">
       <Header />
       <section className="px-5 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
           <Link
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#b7dcd7] underline"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#c9a24b] underline"
             href="/projects"
           >
             Back to projects
@@ -38,7 +38,7 @@ export default async function ProjectDetailPage({
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_360px]">
             <div>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-[#73bf3f]/40 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#a8db4f]">
+                <span className="rounded-full border border-[#e2001a]/40 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#e2001a]">
                   {project.tag}
                 </span>
                 <span className="text-sm font-semibold text-[#aeb5ae]">
@@ -49,20 +49,20 @@ export default async function ProjectDetailPage({
               <h1 className="mt-6 max-w-4xl text-5xl font-black leading-tight md:text-7xl">
                 {project.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg font-medium leading-9 text-[#dce3dd] md:text-2xl md:leading-10">
+              <p className="mt-6 max-w-3xl text-lg font-medium leading-9 text-[#efece7] md:text-2xl md:leading-10">
                 {project.summary}
               </p>
             </div>
 
             <aside className="h-fit rounded-[8px] bg-[#24282b] p-6 ring-1 ring-white/10">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#a8db4f]">
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#e2001a]">
                 Highlights
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {project.points.map((point) => (
                   <span
                     key={point}
-                    className="rounded-full bg-white/8 px-3 py-2 text-xs font-semibold text-[#dce3dd]"
+                    className="rounded-full bg-white/8 px-3 py-2 text-xs font-semibold text-[#efece7]"
                   >
                     {point}
                   </span>
@@ -93,10 +93,10 @@ export default async function ProjectDetailPage({
           </div>
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[260px_1fr]">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-[#a8db4f]">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-[#e2001a]">
               Detail project
             </p>
-            <div className="space-y-6 text-lg font-medium leading-9 text-[#dce3dd]">
+            <div className="space-y-6 text-lg font-medium leading-9 text-[#efece7]">
               {project.detail.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}

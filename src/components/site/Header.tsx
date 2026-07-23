@@ -1,101 +1,100 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { index: "01", label: "About", href: "/about", match: "/about" },
-  { index: "02", label: "Projects", href: "/#projects", match: "/projects" },
-  {
-    index: "03",
-    label: "Experience",
-    href: "/#experience",
-    match: "/experience",
-  },
+  { label: "About", href: "/about", match: "/about" },
+  { label: "Projects", href: "/#projects", match: "/projects" },
+  { label: "Experience", href: "/#experience", match: "/experience" },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const isActive = (match: string) =>
     pathname === match || pathname.startsWith(`${match}/`);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <motion.header
-      className="site-header sticky top-0 z-50"
+      className="fixed inset-x-0 top-0 z-50"
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.42, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
     >
-      <div className="site-header-panel">
+      <div
+        className={`border-b transition-colors duration-300 ${
+          scrolled
+            ? "border-ink/10 bg-bone/80 backdrop-blur-md"
+            : "border-transparent bg-transparent"
+        }`}
+      >
         <nav
-          className="site-header-nav mx-auto flex max-w-7xl items-center px-5 sm:px-6 md:px-10 lg:px-16"
+          className="mx-auto flex h-[4.6rem] max-w-[94rem] items-center justify-between px-6 md:px-12"
           aria-label="Primary navigation"
         >
           <Link
-            className="brand-mark group flex min-w-0 items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f9c157]"
             href="/"
-            aria-label="FrlAgee â€” home"
+            className="text-lg font-black uppercase tracking-[-0.02em] text-ink transition-opacity hover:opacity-70"
+            aria-label="FrlAgee — home"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="brand-monogram" aria-hidden="true">
-              F
-            </span>
-            <span className="flex min-w-0 flex-col leading-none">
-              <span className="text-[1.08rem] font-extrabold text-[#f4f6f0] sm:text-[1.14rem]">
-                FrlAgee
-              </span>
-              <span className="mt-1 hidden text-[0.64rem] font-medium text-[#8f9891] sm:block">
-                Engineer Â· Organizer
-              </span>
-            </span>
+            FrlAgee
+            <span className="text-rossoneri">.</span>
           </Link>
 
-          <div className="landing-header-nav ml-auto hidden h-full items-stretch md:flex">
-            {navItems.map((item) => {
-              const active = isActive(item.match);
-
-              return (
-                <Link
-                  key={item.href}
-                  className="header-nav-link"
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  data-active={active || undefined}
-                >
-                  <span className="header-nav-index" aria-hidden="true">
-                    {item.index}
-                  </span>
-                  <span>{item.label}</span>
-                </Link>
-              );
-            })}
+          <div className="hidden items-center gap-10 md:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                data-active={isActive(item.match) || undefined}
+                className="hero-link-underline text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink/60 transition-colors hover:text-ink data-[active]:text-ink"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <a
+              href="mailto:farrel.ag20@gmail.com"
+              className="group inline-flex items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-ink transition-colors duration-300 hover:bg-ink hover:text-bone"
+            >
+              Let&apos;s talk
+              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                ↗
+              </span>
+            </a>
           </div>
 
-          <a
-            className="header-contact-link ml-auto hidden items-center gap-3 md:ml-5 md:inline-flex"
-            href="mailto:farrel.ag20@gmail.com"
-          >
-            <span>Let&apos;s talk</span>
-            <span className="header-contact-arrow" aria-hidden="true">
-              â†—
-            </span>
-          </a>
-
           <button
-            className="header-menu-button ml-auto inline-flex items-center gap-2 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center md:hidden"
             type="button"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setIsMenuOpen((open) => !open)}
           >
-            <span>{isMenuOpen ? "Close" : "Menu"}</span>
-            <span className="header-menu-icon" data-open={isMenuOpen || undefined} aria-hidden="true">
-              <span />
-              <span />
+            <span className="relative block h-3 w-6">
+              <span
+                className={`absolute left-0 block h-[2px] w-6 bg-ink transition-all duration-300 ${
+                  isMenuOpen ? "top-1.5 rotate-45" : "top-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 block h-[2px] w-6 bg-ink transition-all duration-300 ${
+                  isMenuOpen ? "top-1.5 -rotate-45" : "top-3"
+                }`}
+              />
             </span>
           </button>
         </nav>
@@ -104,45 +103,29 @@ export function Header() {
           {isMenuOpen ? (
             <motion.div
               id="mobile-navigation"
-              className="mobile-navigation md:hidden"
+              className="overflow-hidden border-t border-ink/10 bg-bone md:hidden"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.24, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
             >
-              <div className="mx-auto max-w-7xl px-5 pb-6 pt-3 sm:px-6">
-                <div className="mobile-navigation-list">
-                  {navItems.map((item) => {
-                    const active = isActive(item.match);
-
-                    return (
-                      <Link
-                        key={item.href}
-                        className="mobile-navigation-link"
-                        href={item.href}
-                        aria-current={active ? "page" : undefined}
-                        data-active={active || undefined}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <span className="header-nav-index" aria-hidden="true">
-                          {item.index}
-                        </span>
-                        <span>{item.label}</span>
-                        <span aria-hidden="true">â†—</span>
-                      </Link>
-                    );
-                  })}
-                </div>
+              <div className="mx-auto flex max-w-[94rem] flex-col px-6 py-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="border-b border-ink/10 py-4 text-2xl font-black uppercase tracking-[-0.01em] text-ink"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
                 <a
-                  className="mobile-contact-link"
                   href="mailto:farrel.ag20@gmail.com"
                   onClick={() => setIsMenuOpen(false)}
+                  className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-6 py-3 text-sm font-bold uppercase tracking-[0.14em] text-ink"
                 >
-                  <span className="header-contact-dot" aria-hidden="true" />
-                  Available for a conversation
-                  <span className="ml-auto" aria-hidden="true">
-                    â†—
-                  </span>
+                  Let&apos;s talk ↗
                 </a>
               </div>
             </motion.div>
@@ -152,4 +135,3 @@ export function Header() {
     </motion.header>
   );
 }
-

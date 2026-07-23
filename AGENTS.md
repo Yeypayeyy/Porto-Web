@@ -6,13 +6,13 @@ This version has breaking changes - APIs, conventions, and file structure may al
 
 # Codex Project Memory
 
-Project ini adalah portfolio pribadi Muhammad Farrel Al Ghazy (`FrlAgee`), dibangun sebagai website portfolio dengan nuansa consulting/editorial: dark hero, lime accent, section bands besar, elemen stitch/sticker, foto kegiatan, dan storytelling seputar fullstack/backend/Web3, organisasi, kepanitiaan, partnership, dan leadership.
+Project ini adalah portfolio pribadi Muhammad Farrel Al Ghazy (`FrlAgee`) yang menampilkan karya dan pengalaman seputar fullstack/backend/Web3, organisasi, kepanitiaan, partnership, dan leadership.
 
 ## Instruksi Wajib
 
 - Baca file ini dulu sebelum mengubah project.
 - Sebelum mengubah code Next.js, baca guide lokal yang relevan di `node_modules/next/dist/docs/`. Jangan mengandalkan asumsi Next.js lama.
-- Sebelum membuat atau mengubah UI, baca `DESIGN_REFERENCE.md`. File itu adalah arah visual utama.
+- `DESIGN_REFERENCE.md` sudah dihapus dengan sengaja karena website akan dirombak. Jangan menganggap file itu wajib, jangan mencoba membacanya, dan jangan membuatnya kembali kecuali diminta user.
 - Jangan reset atau menghapus perubahan user tanpa izin.
 - Pakai `pnpm` sebagai package manager karena repo punya `pnpm-lock.yaml`.
 
@@ -108,21 +108,9 @@ Kalau ingin migrasi dari data statis ke CMS, lakukan bertahap:
 - Pertahankan fallback atau mapping dari bentuk CMS ke bentuk UI yang sudah ada.
 - Jangan langsung hapus `src/data/portfolio.ts` sebelum semua page aman.
 
-## Design Direction
+## Kondisi UI Saat Ini
 
-Arah visual wajib mengikuti `DESIGN_REFERENCE.md`:
-
-- Professional, energetic, youth-consulting, editorial.
-- Dark-first palette dengan lime green sebagai identity color.
-- Warna kunci: `#121513`, `#24282B`, `#1B1E1D`, `#73BF3F`, `#A8DB4F`, `#B7DCD7`, `#66C3D4`, `#F4F6F0`, `#AEB5AE`.
-- Banyak section full-width band, bukan card bertumpuk.
-- Visual motif: stitch line, sticker label, batik element, halftone/grid, lime divider, foto kegiatan.
-- Radius cenderung kecil-sedang: repeated cards sering `8px`; hero photo cards sekitar `16px`; pills `999px`.
-- Jangan bikin SaaS landing page generik. Jaga rasa student organization + consulting portfolio.
-- Jangan pakai letter-spacing negatif.
-- Pastikan text tidak overlap, terutama di mobile.
-
-## Pola UI Yang Sudah Ada
+Bagian ini hanya mendeskripsikan implementasi yang sedang ada untuk membantu navigasi code. Ini bukan design direction yang wajib dipertahankan. Saat user meminta redesign atau perombakan, arah visual baru dari brief user boleh menggantikan pola lama, sementara batasan teknis dan konten yang masih relevan tetap dijaga.
 
 - Header sticky gelap dengan brand `FrlAgee`, nav anchor ke homepage section, CTA email.
 - Hero memakai image background `/images/image 2.png`, overlay gelap, grid foto Farrel, CTA ke `/projects`, social links.
@@ -173,7 +161,7 @@ Get-Content -Raw -LiteralPath 'src\app\(site)\projects\[slug]\page.tsx'
 - `ProjectsSection.tsx` harus tetap `"use client"` karena memakai hooks dan DOM scrolling.
 - `globals.css` memuat banyak custom animation dan class yang dipakai across sections.
 - `FocusSection.tsx` ada tetapi belum dipakai di homepage.
-- README masih default create-next-app, jadi `AGENTS.md` dan `DESIGN_REFERENCE.md` lebih berguna untuk konteks project.
+- README masih default create-next-app, jadi `AGENTS.md` lebih berguna untuk konteks project.
 - Ada folder `.next`, `node_modules`, `.pnpm-store`; jangan edit manual.
 
 ## Current Portfolio Content
@@ -212,7 +200,7 @@ Experience includes:
 ## Suggested First Steps For Codex
 
 1. Run `pnpm lint` before/after risky edits.
-2. For UI work, read `DESIGN_REFERENCE.md` and inspect nearby section/component first.
+2. For UI work, inspect the nearby section/component and existing global styles first.
 3. For Next.js routing/data/loading changes, read relevant docs in `node_modules/next/dist/docs/`.
 4. For content changes, start from `src/data/portfolio.ts`.
 5. For CMS changes, inspect `payload.config.ts` and `src/collections/*`.
