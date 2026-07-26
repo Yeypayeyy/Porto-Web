@@ -10,30 +10,17 @@ const focusAreas = [
   "Event Operations",
 ];
 
-/** Same lineup grammar as the hero, in the KMTETI jacket instead of the almamater. */
-const poses = [
-  {
-    src: "/images/char-kmteti-side.png",
-    alt: "",
-    size: "hidden sm:block sm:h-[min(17vh,9rem)] lg:h-[min(19vh,12rem)]",
-    overlap: "-mr-8 lg:-mr-14",
-    z: "z-0",
-  },
-  {
-    src: "/images/char-kmteti-arms.png",
-    alt: "Pixel-art illustration of Farrel in a navy KMTETI jacket, arms crossed",
-    size: "h-[min(20vh,11rem)] sm:h-[min(22vh,12rem)] lg:h-[min(23vh,15rem)]",
-    overlap: "-mr-8 lg:-mr-14",
-    z: "z-10",
-  },
-  {
-    src: "/images/char-kmteti-stand.png",
-    alt: "",
-    size: "h-[min(18vh,10rem)] sm:h-[min(20vh,11rem)] lg:h-[min(21vh,13.5rem)]",
-    overlap: "",
-    z: "z-0",
-  },
-];
+/** One figure, not the hero's lineup — About is the quieter restatement, and a
+ *  single pose keeps the eye on the copy. In the KMTETI jacket, not the
+ *  almamater. */
+const pose = {
+  // `-solo`: the original export carries a slice of the neighbouring pose on
+  // its left edge, which the lineup used to cover. Cropped at the transparent
+  // gutter (columns 41–45 of 512).
+  src: "/images/char-kmteti-arms-solo.png",
+  alt: "Pixel-art illustration of Farrel in a navy KMTETI jacket, arms crossed",
+  size: "h-[min(24vh,13rem)] sm:h-[min(26vh,15rem)] lg:h-[min(28vh,20rem)]",
+};
 
 /**
  * Overview only — enough to place the person, then hand off to /about for the
@@ -57,20 +44,15 @@ export function AboutSection() {
                 "radial-gradient(closest-side at 50% 58%, color-mix(in oklab, var(--rossoneri) 15%, transparent), transparent 76%)",
             }}
           />
-          {poses.map((pose) => (
-            <div
-              key={pose.src}
-              className={`relative aspect-[1/2] ${pose.size} ${pose.overlap} ${pose.z}`}
-            >
-              <Image
-                src={pose.src}
-                alt={pose.alt}
-                fill
-                sizes="(min-width: 1024px) 11rem, 8rem"
-                className="object-contain [image-rendering:pixelated] [mask-image:linear-gradient(to_bottom,#000_86%,transparent_99%)]"
-              />
-            </div>
-          ))}
+          <div className={`relative aspect-[1/2] ${pose.size}`}>
+            <Image
+              src={pose.src}
+              alt={pose.alt}
+              fill
+              sizes="(min-width: 1024px) 11rem, 8rem"
+              className="object-contain [image-rendering:pixelated] [mask-image:linear-gradient(to_bottom,#000_86%,transparent_99%)]"
+            />
+          </div>
         </Reveal>
 
         <div className="flex w-full items-center gap-6">
