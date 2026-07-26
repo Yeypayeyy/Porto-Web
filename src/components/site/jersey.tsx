@@ -1,37 +1,11 @@
 /**
  * Rossoneri jersey motif — the shared vocabulary for red + gold structural
- * geometry. Both pieces speak the same language as the footer's wing SVG:
- * a red panel with a gold trim line running alongside its curve.
+ * geometry. It speaks the same language as the footer's wing SVG: a red
+ * panel with a gold trim line running alongside its curve.
  *
- * `JerseyWing` frames a bar (the header).
  * `JerseySeam` joins two sections that flip tone, so a hard bone/black edge
  * becomes a stitched panel join instead of a cut.
  */
-
-/** Red wing with gold trim. Mirror it with `-scale-x-100` for the right edge. */
-export function JerseyWing({ className }: { className: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={`pointer-events-none absolute top-0 hidden h-[4.6rem] w-12 md:block ${className}`}
-      viewBox="0 0 48 74"
-      preserveAspectRatio="none"
-      fill="none"
-    >
-      <path
-        d="M0 0 H38 C 27 24 20 50 32 74 H0 Z"
-        fill="var(--rossoneri)"
-        opacity="0.9"
-      />
-      <path
-        d="M43 0 C 32 24 25 50 37 74"
-        stroke="var(--gold)"
-        strokeWidth="2.5"
-        opacity="0.8"
-      />
-    </svg>
-  );
-}
 
 /**
  * Section handoff. `top` / `bottom` are the two section backgrounds; the strip

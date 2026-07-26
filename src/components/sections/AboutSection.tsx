@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
+import { AboutRedEdges } from "@/components/sections/AboutRedEdges";
 
 const focusAreas = [
   "Software Development",
@@ -14,21 +15,21 @@ const poses = [
   {
     src: "/images/char-kmteti-side.png",
     alt: "",
-    size: "hidden sm:block sm:h-[min(26vh,13rem)] lg:h-[min(32vh,17rem)]",
+    size: "hidden sm:block sm:h-[min(17vh,9rem)] lg:h-[min(19vh,12rem)]",
     overlap: "-mr-8 lg:-mr-14",
     z: "z-0",
   },
   {
     src: "/images/char-kmteti-arms.png",
     alt: "Pixel-art illustration of Farrel in a navy KMTETI jacket, arms crossed",
-    size: "h-[min(28vh,15rem)] sm:h-[min(34vh,17rem)] lg:h-[min(40vh,21rem)]",
+    size: "h-[min(20vh,11rem)] sm:h-[min(22vh,12rem)] lg:h-[min(23vh,15rem)]",
     overlap: "-mr-8 lg:-mr-14",
     z: "z-10",
   },
   {
     src: "/images/char-kmteti-stand.png",
     alt: "",
-    size: "h-[min(24vh,12rem)] sm:h-[min(30vh,15rem)] lg:h-[min(36vh,19rem)]",
+    size: "h-[min(18vh,10rem)] sm:h-[min(20vh,11rem)] lg:h-[min(21vh,13.5rem)]",
     overlap: "",
     z: "z-0",
   },
@@ -42,10 +43,12 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-bone px-6 py-20 text-ink md:px-12 md:py-24"
+      className="relative flex flex-col justify-center overflow-hidden bg-bone px-6 py-20 text-ink md:min-h-[calc(100vh-4.6rem)] md:px-12 md:py-12"
     >
-      <div className="mx-auto flex max-w-[64rem] flex-col items-center text-center">
-        <Reveal className="relative mb-8 flex items-end justify-center">
+      <AboutRedEdges />
+
+      <div className="relative mx-auto flex max-w-[64rem] flex-col items-center text-center">
+        <Reveal className="relative mb-5 flex items-end justify-center">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-x-[22%] -bottom-[12%] -top-[10%] -z-10"
@@ -86,7 +89,7 @@ export function AboutSection() {
         </div>
 
         <Reveal
-          className="mt-7 max-w-[46rem] text-base leading-[1.8] text-ink/75 md:text-lg"
+          className="mt-5 max-w-[46rem] text-base leading-[1.8] text-ink/75 md:text-lg"
           delay={0.1}
         >
           I&apos;m an{" "}
@@ -104,7 +107,7 @@ export function AboutSection() {
 
         <Reveal
           stagger
-          className="mt-8 flex flex-wrap justify-center gap-3"
+          className="mt-6 flex flex-wrap justify-center gap-3"
           delay={0.16}
         >
           {focusAreas.map((area) => (
@@ -117,7 +120,7 @@ export function AboutSection() {
           ))}
         </Reveal>
 
-        <Reveal className="mt-9" delay={0.22}>
+        <Reveal className="mt-6" delay={0.22}>
           <Link
             href="/about"
             className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"

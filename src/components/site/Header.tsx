@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { JerseyWing } from "@/components/site/jersey";
 
 const navItems = [
   { label: "About", href: "/about", match: "/about" },
@@ -35,20 +34,14 @@ export function Header() {
       transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
     >
       <div
-        className={`relative border-b transition-colors duration-300 ${
+        className={`border-b transition-colors duration-300 ${
           scrolled
-            ? "border-rossoneri/30 bg-bone/80 backdrop-blur-md"
+            ? "border-ink/10 bg-bone/80 backdrop-blur-md"
             : "border-transparent bg-transparent"
         }`}
       >
-        {/* Anchored to the viewport edges, not the nav container, so the wings
-            stay flush on wide screens. Height is pinned to the nav row so the
-            open mobile menu doesn't stretch them. */}
-        <JerseyWing className="left-0" />
-        <JerseyWing className="right-0 -scale-x-100" />
-
         <nav
-          className="relative mx-auto flex h-[4.6rem] max-w-[94rem] items-center justify-between px-6 md:px-12"
+          className="mx-auto flex h-[4.6rem] max-w-[94rem] items-center justify-between px-6 md:px-12"
           aria-label="Primary navigation"
         >
           <Link

@@ -193,7 +193,7 @@ button {
 }
 
 .hero-marquee {
-  animation: hero-marquee-scroll 28s linear infinite;
+  animation: hero-marquee-scroll 55s linear infinite;
 }
 
 @keyframes hero-marquee-scroll {
