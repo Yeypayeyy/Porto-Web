@@ -25,10 +25,16 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    // `duration` is how long the glide takes to settle after each wheel tick —
+    // the main knob for how smooth the page feels. Higher = longer, softer
+    // glide; too high and the page feels detached from the wheel.
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 1.6,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      // Slightly under 1 so each tick travels less and the easing has room to
+      // show, instead of the glide being cut short by the next tick.
+      wheelMultiplier: 0.9,
       touchMultiplier: 1.6,
     });
 

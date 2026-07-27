@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { prefersReducedMotion } from "./motion-config";
 import { useTransition } from "./TransitionContext";
@@ -251,7 +252,16 @@ export function IntroAnimation() {
       {/* Center stage */}
       <div className="intro-center">
         {/* Monogram / brand name */}
+        {/* Rides the existing monogram tween — no timeline changes needed. */}
         <div ref={monogramRef} className="intro-monogram">
+          <Image
+            src="/images/char-kmteti-stand.png"
+            alt=""
+            width={512}
+            height={1024}
+            priority
+            className="intro-char"
+          />
           <span className="intro-name">FrlAgee</span>
         </div>
 

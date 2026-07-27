@@ -193,7 +193,7 @@ button {
 }
 
 .hero-marquee {
-  animation: hero-marquee-scroll 28s linear infinite;
+  animation: hero-marquee-scroll 55s linear infinite;
 }
 
 @keyframes hero-marquee-scroll {
@@ -1301,6 +1301,16 @@ button {
 
 .intro-monogram {
   will-change: opacity, transform;
+}
+
+.intro-char {
+  display: block;
+  height: clamp(8rem, 24vh, 15rem);
+  image-rendering: pixelated;
+  margin: 0 auto 0.85rem;
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 82%, transparent 99%);
+  width: auto;
 }
 
 .intro-name {
