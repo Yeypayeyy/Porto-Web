@@ -33,62 +33,85 @@ export function ProjectsSection() {
           </div>
           <Reveal className="max-w-sm" delay={0.1}>
             <p className="text-base leading-7 text-ink/60">
-              A collection of systems and experiments — each shaped by curiosity
-              and the goal of building things that feel useful and reliable.
+              Satu loker untuk satu project — isinya tangkapan layar, catatan
+              singkat, dan hal-hal yang dikerjakan di dalamnya.
             </p>
           </Reveal>
         </div>
 
-        <Reveal stagger className="mt-4">
-          {projects.map((project, index) => (
-            <Link
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-ink/12 py-7 transition-colors duration-300 hover:bg-ink/[0.03] md:gap-8 md:py-9"
-            >
-              <span className="font-mono text-sm text-ink/40 tabular-nums">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+        <Reveal className="mt-16" delay={0.05}>
+          <div className="locker-room">
+            {projects.map((project, index) => {
+              const number = String(index + 1).padStart(2, "0");
+              return (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  className="locker group text-bone"
+                >
+                  <div className="relative z-[3] flex flex-1 flex-col p-4">
+                    <div className="flex items-center justify-between text-[0.6rem] font-semibold uppercase tracking-[0.26em] text-bone/45">
+                      <span className="font-mono tabular-nums">{number}</span>
+                      <span>{project.tag}</span>
+                    </div>
 
-              <div className="min-w-0">
-                <h3 className="font-display text-[clamp(1.4rem,3vw,2.4rem)] font-black uppercase leading-tight tracking-[-0.02em] transition-colors duration-300 group-hover:text-rossoneri">
-                  {project.title}
-                </h3>
-                <p className="mt-1 truncate text-xs font-semibold uppercase tracking-[0.14em] text-ink/45">
-                  {project.tag} · {project.status}
-                </p>
-              </div>
+                    {/* Rail the print hangs from */}
+                    <div className="locker-rail mt-3" />
+                    <div className="locker-hook mx-auto" />
 
-              <div className="flex items-center gap-5">
-                {project.image ? (
-                  <span className="relative hidden h-16 w-28 shrink-0 overflow-hidden bg-bone-soft md:block lg:h-20 lg:w-36">
-                    <Image
-                      src={project.image}
-                      alt=""
-                      fill
-                      sizes="144px"
-                      className="object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                    />
-                  </span>
-                ) : null}
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-ink/20 text-ink transition-colors duration-300 group-hover:border-rossoneri group-hover:bg-rossoneri group-hover:text-bone">
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.2"
-                    aria-hidden="true"
-                  >
-                    <path d="M7 17 17 7" />
-                    <path d="M9 7h8v8" />
-                  </svg>
-                </span>
-              </div>
-            </Link>
-          ))}
+                    <div className="locker-photo relative mt-4 aspect-[4/3] w-full overflow-hidden border border-white/10 bg-black/50">
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt=""
+                          fill
+                          sizes="(max-width: 767px) 100vw, 20vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <span className="grid h-full place-items-center px-3 text-center text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-bone/35">
+                          {project.tag}
+                        </span>
+                      )}
+                    </div>
+
+                    <h3 className="mt-5 font-display text-[0.95rem] font-black uppercase leading-tight tracking-[0.01em]">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1 text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-bone/45">
+                      {project.status}
+                    </p>
+
+                    <p className="mt-3 text-[0.78rem] leading-5 text-bone/65">
+                      {project.summary}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {project.points.map((point) => (
+                        <span
+                          key={point}
+                          className="border border-bone/20 px-2 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.12em] text-bone/55"
+                        >
+                          {point}
+                        </span>
+                      ))}
+                    </div>
+
+                    <span className="mt-auto flex items-center gap-2 pt-6 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-bone/70 transition-colors duration-300 group-hover:text-rossoneri">
+                      Lihat project
+                      <span
+                        aria-hidden="true"
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      >
+                        ↗
+                      </span>
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="locker-floor text-ink/85" />
         </Reveal>
 
         <Reveal className="mt-12" delay={0.1}>

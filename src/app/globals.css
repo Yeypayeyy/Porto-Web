@@ -1399,3 +1399,118 @@ button {
   }
 }
 
+
+/* Locker Room ----------------------------------------------------- */
+
+.locker-room {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+/* One bay: brushed metal back panel, kit hanging inside. */
+.locker {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 32%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.045) 0 1px,
+      transparent 1px 16px
+    ),
+    #131313;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  min-height: 26rem;
+  overflow: hidden;
+  position: relative;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.locker:hover,
+.locker:focus-visible {
+  border-color: color-mix(in srgb, var(--rossoneri) 65%, transparent);
+  box-shadow: 0 34px 60px -30px rgba(0, 0, 0, 0.85);
+  outline: none;
+  transform: translateY(-8px);
+}
+
+/* Overhead strip light, brighter when the bay is active. */
+.locker::before {
+  background: radial-gradient(
+    130% 55% at 50% -12%,
+    rgba(255, 255, 255, 0.2),
+    transparent 72%
+  );
+  content: "";
+  inset: 0;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.locker:hover::before,
+.locker:focus-visible::before {
+  opacity: 1;
+}
+
+.locker-rail {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.1)
+  );
+  height: 3px;
+}
+
+/* Hook the print hangs from. */
+.locker-hook {
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top: none;
+  border-radius: 0 0 999px 999px;
+  height: 0.7rem;
+  width: 1.1rem;
+}
+
+/* The project print pinned in the bay: grey until the bay is active. */
+.locker-photo {
+  filter: grayscale(1) contrast(1.05);
+  transition:
+    filter 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.locker:hover .locker-photo,
+.locker:focus-visible .locker-photo {
+  filter: grayscale(0);
+  transform: translateY(-3px);
+}
+
+.locker-floor {
+  background: linear-gradient(180deg, currentColor 0 45%, rgba(0, 0, 0, 0.5));
+  box-shadow: 0 24px 36px -22px rgba(0, 0, 0, 0.6);
+  height: 0.85rem;
+}
+
+/* No hover on touch: one bay per row, prints already in colour. */
+@media (max-width: 767px) {
+  .locker-room {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .locker {
+    min-height: auto;
+  }
+
+  .locker-photo {
+    filter: none;
+  }
+}
+
+/* End Locker Room ------------------------------------------------- */
