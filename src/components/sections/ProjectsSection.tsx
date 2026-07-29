@@ -45,7 +45,7 @@ export function ProjectsSection() {
 
             <Link
               href="/projects"
-              className="group flex min-h-[11rem] flex-col justify-end gap-6 rounded-[1.5rem] bg-rossoneri p-6 text-bone md:col-span-2"
+              className="group flex min-h-[11rem] flex-col justify-end gap-6 rounded-[1.75rem] [corner-shape:squircle] bg-rossoneri p-6 text-bone md:col-span-2"
             >
               <span className="flex items-end justify-between gap-6">
                 <span className="font-display text-[clamp(1.4rem,2.6vw,2.1rem)] font-black leading-[0.95] tracking-[-0.02em]">
@@ -73,7 +73,7 @@ function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group relative flex min-h-[11rem] flex-col justify-between overflow-hidden rounded-[1.5rem] bg-ink/60 p-5 ${className}`}
+      className={`group relative flex min-h-[11rem] flex-col justify-between overflow-hidden rounded-[1.75rem] [corner-shape:squircle] bg-ink/60 p-5 ${className}`}
     >
       {project.image && (
         <Image
