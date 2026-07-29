@@ -22,13 +22,13 @@ export type Experience = {
 export const projects: Project[] = [
   {
     slug: "portfolio-web-system",
-    title: "Portfolio Web System",
+    title: "Portfolio Web ",
     tag: "Featured",
-    status: "Next.js, Tailwind CSS, pnpm",
+    status: "Frontend / UI-UX",
     summary:
       "Personal portfolio built as a clean consulting-style profile for projects, experience, and professional identity.",
     points: ["Dark editorial hero", "Project filtering", "Responsive section bands"],
-    image: "/images/Screenshot 2026-06-07 002808.png",
+    image: "/Project/porto.webp",
     detail: [
       "Built as a personal portfolio system that balances visual identity, professional storytelling, and a fast browsing experience.",
       "Structured the site around reusable section components, responsive layouts, and project/experience data that can keep growing over time.",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     slug: "kmteti-website",
     title: "KMTETI Website",
     tag: "Featured",
-    status: "KMTETI FT UGM, Website",
+    status: "Frontend / Web Development",
     summary:
       "Official organization website for KMTETI FT UGM, built to present profile information, divisions, activities, services, and news in a clear digital experience.",
     points: ["Next.js", "Tailwind CSS", "TypeScript"],
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     slug: "campaign-web",
     title: "Campaign Web",
     tag: "Featured",
-    status: "Next.js, Tailwind CSS, TypeScript",
+    status: "Frontend / UI-UX",
     summary:
       "Campaign website designed to present candidate profile, vision and mission, experience, work programs, gallery, testimonials, and contact information in one focused page.",
     points: ["Next.js", "Tailwind CSS", "TypeScript"],
@@ -67,36 +67,6 @@ export const projects: Project[] = [
       "Used a responsive visual system so gallery, testimonials, and program information stay polished on small screens.",
     ],
     featured: true,
-  },
-  {
-    slug: "event-logistics-operating-flow",
-    title: "Event Logistics Operating Flow",
-    tag: "Operations",
-    status: "TETI LabSkill, Technocorner, Teknik Fair",
-    summary:
-      "A structured coordination flow for logistics, equipment, consumption, guest handling, and inter-division communication.",
-    points: ["Logistics mapping", "Stakeholder handling", "Execution control"],
-    detail: [
-      "Created an operating flow for event logistics so equipment, consumption, guest needs, and inter-division communication could be tracked clearly.",
-      "Mapped responsibilities and checkpoints to reduce last-minute ambiguity during preparation and event execution.",
-      "Supported smoother coordination between teams by turning scattered needs into a shared working structure.",
-    ],
-    featured: false,
-  },
-  {
-    slug: "partnership-pipeline-framework",
-    title: "Partnership Pipeline Framework",
-    tag: "Partnership",
-    status: "UGM Blockchain Club",
-    summary:
-      "A partnership-oriented framework for managing outreach, relationship building, and external collaboration opportunities.",
-    points: ["Partner research", "Communication flow", "Value proposal"],
-    detail: [
-      "Built a partnership pipeline for identifying potential collaborators, preparing outreach, and tracking relationship progress.",
-      "Structured communication around clear value proposals so external partners could understand the benefit of collaboration quickly.",
-      "Helped make partnership work more repeatable by separating research, outreach, follow-up, and agreement stages.",
-    ],
-    featured: false,
   },
 ];
 
