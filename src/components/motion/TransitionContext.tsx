@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -65,14 +66,45 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
     // Small delay to let React commit the new page before revealing
     setTimeout(() => {
       setPhase("enter");
-      // Scroll to top for the new page
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+      // Scroll to top for the new page — unless the link targeted an anchor,
+      // which the browser/router positions itself.
+      if (!window.location.hash) {
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+      }
     }, 100);
   }, [router]);
 
   const onEnterComplete = useCallback(() => {
     setPhase("idle");
   }, []);
+
+  // One delegated listener covers every internal <a> on the site — no need to
+  // swap next/link for a custom component in each section.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const anchor = (e.target as HTMLElement | null)?.closest?.("a");
+      if (!anchor || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+
+      const url = new URL(anchor.href, window.location.href);
+      if (url.origin !== window.location.origin) return; // external
+      if (url.pathname.startsWith("/admin")) return; // Payload owns its own routing
+      if (url.hash) return; // in-page anchor: let it scroll
+      // Same path with no hash (e.g. the brand link on the landing page) still
+      // plays the curtain and returns to the top.
+
+      // Capture phase: next/link preventDefaults on the anchor itself, so we
+      // have to claim the click before its handler ever sees it.
+      e.preventDefault();
+      e.stopPropagation();
+      navigateWithTransition(url.pathname + url.search + url.hash);
+    };
+
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, [navigateWithTransition]);
 
   return (
     <Ctx.Provider

@@ -81,8 +81,8 @@ export function Footer() {
               delay={0.1}
             >
               <p>
-                Punya ide project, kolaborasi, atau sekadar mau ngobrol soal web,
-                backend, dan Web3? Ayo mulai percakapan.
+                Have a project idea, want to collaborate, or just want to talk
+                web, backend, or Web3? Let&apos;s start a conversation.
               </p>
             </Reveal>
             <Reveal className="mt-7" delay={0.15}>

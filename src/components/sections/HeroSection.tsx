@@ -78,9 +78,9 @@ export function HeroSection() {
             delay={0.14}
           >
             <strong className="font-semibold text-ink">
-              Muhammad Farrel Al Ghazy
+              Hi! I'm Muhammad Farrel Al Ghazy
             </strong>{" "}
-            — Information Technology student at UGM and fullstack developer
+            — Information Technology student at Universitas Gadjah Mada and fullstack developer
             focused on building web systems, leading teams, and turning ideas
             into shipped products.
           </Reveal>

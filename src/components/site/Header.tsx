@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "About", href: "/about", match: "/about" },
-  { label: "Projects", href: "/#projects", match: "/projects" },
-  { label: "Experience", href: "/#experience", match: "/experience" },
+  { label: "Projects", href: "/projects", match: "/projects" },
+  { label: "Experience", href: "/experience", match: "/experience" },
 ];
 
 export function Header() {
@@ -66,7 +66,7 @@ export function Header() {
               </Link>
             ))}
             <a
-              href="mailto:farrel.ag20@gmail.com"
+              href="#contact"
               className="group inline-flex items-center gap-2 rounded-full border border-ink px-5 py-2.5 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-ink transition-colors duration-300 hover:bg-ink hover:text-bone"
             >
               Let&apos;s talk
@@ -121,7 +121,7 @@ export function Header() {
                   </Link>
                 ))}
                 <a
-                  href="mailto:farrel.ag20@gmail.com"
+                  href="#contact"
                   onClick={() => setIsMenuOpen(false)}
                   className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-ink px-6 py-3 text-sm font-bold uppercase tracking-[0.14em] text-ink"
                 >

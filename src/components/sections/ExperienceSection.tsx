@@ -7,16 +7,15 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/components/motion/motion-config";
 
-/** Scattered around the centre column, KMTETI-style. left/top = card centre. */
+// Anchored from the left/right edge (not a % of full width) so cards sit in
+// the gutter beside the fixed-width text column and never overlap it.
 const photos = [
-  { src: "/Experience/gallery-1.jpeg", left: "13%", top: "27%", rotate: -8 },
-  { src: "/Experience/gallery-2.jpeg", left: "20%", top: "55%", rotate: 6 },
-  { src: "/Experience/gallery-3.jpeg", left: "14%", top: "82%", rotate: -5 },
-  { src: "/Experience/gallery-4.jpeg", left: "36%", top: "88%", rotate: 8 },
-  { src: "/Experience/gallery-5.jpeg", left: "87%", top: "27%", rotate: 7 },
-  { src: "/Experience/gallery-6.jpeg", left: "80%", top: "55%", rotate: -6 },
-  { src: "/Experience/Hero.webp", left: "86%", top: "82%", rotate: 5 },
-  { src: "/Experience/gallery-7.jpeg", left: "64%", top: "88%", rotate: -7 },
+  { src: "/Experience/gallery-1.jpeg", side: "left", offset: "1.5rem", top: "22%", rotate: -8 },
+  { src: "/Experience/gallery-2.jpeg", side: "left", offset: "3.5rem", top: "50%", rotate: 6 },
+  { src: "/Experience/gallery-3.jpeg", side: "left", offset: "1.5rem", top: "80%", rotate: -5 },
+  { src: "/Experience/gallery-5.jpeg", side: "right", offset: "1.5rem", top: "22%", rotate: 7 },
+  { src: "/Experience/gallery-6.jpeg", side: "right", offset: "3.5rem", top: "50%", rotate: -6 },
+  { src: "/Experience/Hero.webp", side: "right", offset: "1.5rem", top: "80%", rotate: 5 },
 ];
 
 const statement =
@@ -36,8 +35,10 @@ export function ExperienceSection() {
     const spin = (i: number, target: HTMLElement) => Number(target.dataset.rotate);
 
     // No pinning on touch/small screens or under reduced motion: everything is
-    // simply present, the scattered layout still reads as a collage.
-    if (prefersReducedMotion() || !window.matchMedia("(min-width: 1024px)").matches) {
+    // simply present, the scattered layout still reads as a collage. 1280px
+    // is also the width where the gutter beside the text column comfortably
+    // fits a card (see the `photos` comment above).
+    if (prefersReducedMotion() || !window.matchMedia("(min-width: 1280px)").matches) {
       gsap.set(words, { opacity: 1 });
       gsap.set(cards, { opacity: 1, scale: 1, rotate: spin });
       return;
@@ -46,18 +47,10 @@ export function ExperienceSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Photos start stacked in the centre, small and invisible.
-      const box = el.getBoundingClientRect();
-      cards.forEach((card) => {
-        const r = card.getBoundingClientRect();
-        gsap.set(card, {
-          x: box.left + box.width / 2 - (r.left + r.width / 2),
-          y: box.top + box.height / 2 - (r.top + r.height / 2),
-          scale: 0.6,
-          rotate: 0,
-          opacity: 0,
-        });
-      });
+      // Cards pop in at their own scattered spot (scale + fade only) rather
+      // than flying in from the centre — a centre-to-edge path would cross
+      // straight over the text column mid-flight.
+      gsap.set(cards, { scale: 0.6, rotate: 0, opacity: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -72,14 +65,12 @@ export function ExperienceSection() {
       // Stage 1 — the sentence fills in, word by word.
       tl.to(words, { opacity: 1, ease: "none", stagger: 0.4 });
 
-      // Stage 2 — photos fly out of the centre to their scattered spots.
+      // Stage 2 — photos pop into their scattered spots, one at a time.
       tl.to(
         cards,
         {
           opacity: 1,
           scale: 1,
-          x: 0,
-          y: 0,
           rotate: spin,
           ease: "power2.out",
           stagger: 1.6, // > duration: one card lands before the next leaves
@@ -103,14 +94,17 @@ export function ExperienceSection() {
           key={photo.src}
           data-card
           data-rotate={photo.rotate}
-          className="pointer-events-none absolute z-0 hidden h-24 w-36 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] [corner-shape:squircle] bg-white/5 opacity-0 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] lg:block xl:h-32 xl:w-48"
-          style={{ left: photo.left, top: photo.top }}
+          className="pointer-events-none absolute z-0 hidden h-28 w-44 -translate-y-1/2 overflow-hidden rounded-[1.75rem] [corner-shape:squircle] bg-white/5 opacity-0 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] xl:block"
+          style={{
+            [photo.side]: photo.offset,
+            top: photo.top,
+          }}
         >
           <Image
             src={photo.src}
             alt=""
             fill
-            sizes="224px"
+            sizes="176px"
             className="object-cover"
           />
         </span>
@@ -137,7 +131,7 @@ export function ExperienceSection() {
 
         <Link
           href="/experience"
-          className="group mt-10 inline-flex items-center gap-3 rounded-full border border-bone/30 px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-bone transition-colors duration-300 hover:bg-bone hover:text-ink"
+          className="group mt-10 inline-flex items-center gap-3 rounded-full bg-rossoneri px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-bone transition-colors duration-300 hover:bg-rossoneri/85"
         >
           Lihat cerita lengkap
           <span className="transition-transform duration-300 group-hover:translate-x-1">

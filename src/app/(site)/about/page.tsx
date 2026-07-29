@@ -10,7 +10,7 @@ import { TextReveal } from "@/components/motion/TextReveal";
 export const metadata = {
   title: "About | Muhammad Farrel Al Ghazy",
   description:
-    "Information Technology student at UGM, fullstack developer, and organization lead — the full record.",
+    "Information Technology student at Universitas Gadjah Mada, fullstack developer, and organization lead — the full record.",
 };
 
 const facts = [

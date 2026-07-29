@@ -41,15 +41,10 @@ export function IntroAnimation() {
 
     document.body.style.overflow = "hidden";
 
-    if (prefersReducedMotion()) {
-      gsap.to(overlay, {
-        opacity: 0,
-        duration: 0.15,
-        onComplete: () => {
-          document.body.style.overflow = "";
-          completeIntro();
-        },
-      });
+    if (prefersReducedMotion() || document.hidden) {
+      gsap.set(overlay, { opacity: 0, display: "none" });
+      document.body.style.overflow = "";
+      completeIntro();
       return;
     }
 
@@ -136,21 +131,22 @@ export function IntroAnimation() {
       return;
     }
 
-    if (prefersReducedMotion()) {
+    if (prefersReducedMotion() || document.hidden) {
       onExitComplete();
       return;
     }
 
     // Reset overlay to come from bottom
     gsap.set(overlay, { yPercent: 100, opacity: 1, display: "flex" });
-    gsap.set(monogram, { opacity: 0, scale: 0.92, y: 10 });
+    gsap.set(monogram, { opacity: 0, scale: 0.78, y: 16 });
     gsap.set(rule, { scaleX: 0, transformOrigin: "left center" });
-    gsap.set(tagline, { opacity: 0, y: 10 });
+    gsap.set(tagline, { opacity: 0, y: 18 });
 
     const tl = gsap.timeline({
       onComplete: onExitComplete,
     });
 
+    // Same pop as the intro, played at ~60% of its length.
     tl
       // Curtain slides up to cover viewport
       .to(overlay, {
@@ -158,20 +154,24 @@ export function IntroAnimation() {
         duration: 0.55,
         ease: "power3.inOut",
       })
-      // Quick monogram pop
       .to(monogram, {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.35,
+        duration: 0.5,
         ease: "power3.out",
-      }, "-=0.1")
-      // Rule sweep (fast)
+      }, "-=0.15")
       .to(rule, {
         scaleX: 1,
-        duration: 0.3,
+        duration: 0.4,
         ease: "power2.inOut",
-      }, "-=0.1");
+      }, "-=0.2")
+      .to(tagline, {
+        opacity: 1,
+        y: 0,
+        duration: 0.35,
+        ease: "power3.out",
+      }, "-=0.15");
 
     tlRef.current = tl;
   }, [onExitComplete]);
@@ -188,7 +188,7 @@ export function IntroAnimation() {
       return;
     }
 
-    if (prefersReducedMotion()) {
+    if (prefersReducedMotion() || document.hidden) {
       gsap.set(overlay, { display: "none" });
       onEnterComplete();
       return;
@@ -230,6 +230,16 @@ export function IntroAnimation() {
       runEnter();
     }
   }, [phase, isIntro, runExit, runEnter]);
+
+  // A backgrounded tab freezes rAF, which would leave the curtain stranded
+  // mid-transition. Snap whatever is running to its end instead.
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden) tlRef.current?.progress(1);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
 
   // Clean up on unmount
   useEffect(() => {

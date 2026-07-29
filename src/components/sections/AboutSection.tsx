@@ -19,7 +19,7 @@ const pose = {
   // gutter (columns 41–45 of 512).
   src: "/images/char-kmteti-arms-solo.png",
   alt: "Pixel-art illustration of Farrel in a navy KMTETI jacket, arms crossed",
-  size: "h-[min(24vh,13rem)] sm:h-[min(26vh,15rem)] lg:h-[min(28vh,20rem)]",
+  size: "h-[min(17vh,11rem)] sm:h-[min(19vh,13rem)] lg:h-[min(21vh,16rem)]",
 };
 
 /**
@@ -30,12 +30,14 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative flex flex-col justify-center overflow-hidden bg-bone px-6 py-20 text-ink md:min-h-[calc(100vh-4.6rem)] md:px-12 md:py-12"
+      /* `h-`, not `min-h-`: the panel pins below the header, so anything taller
+         than the pin window (100vh − header) hangs off-screen and gets cut. */
+      className="relative flex flex-col justify-center overflow-hidden bg-bone px-6 py-20 text-ink md:h-[calc(100vh-4.6rem)] md:px-12 md:py-[max(4rem,9vh)]"
     >
       <AboutRedEdges />
 
       <div className="relative mx-auto flex max-w-[64rem] flex-col items-center text-center">
-        <Reveal className="relative mb-5 flex items-end justify-center">
+        <Reveal className="relative mb-4 flex items-end justify-center">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-x-[22%] -bottom-[12%] -top-[10%] -z-10"
@@ -71,7 +73,7 @@ export function AboutSection() {
         </div>
 
         <Reveal
-          className="mt-5 max-w-[46rem] text-base leading-[1.8] text-ink/75 md:text-lg"
+          className="mt-4 max-w-[46rem] text-base leading-[1.8] text-ink/75 md:text-lg"
           delay={0.1}
         >
           I&apos;m an{" "}
@@ -102,12 +104,15 @@ export function AboutSection() {
           ))}
         </Reveal>
 
-        <Reveal className="mt-6" delay={0.22}>
+        <Reveal className="mt-8" delay={0.22}>
           <Link
             href="/about"
-            className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
+            className="group inline-flex items-center gap-3 rounded-full bg-rossoneri px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition-colors duration-300 hover:bg-rossoneri-deep"
           >
-            More about me ↗
+            More about me
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              ↗
+            </span>
           </Link>
         </Reveal>
       </div>
