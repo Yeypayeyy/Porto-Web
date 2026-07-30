@@ -123,7 +123,7 @@ export function ExperienceSection() {
           ))}
         </p>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-bone/45">
+        <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#c9a24b]">
           {signals.map((signal) => (
             <span key={signal}>{signal}</span>
           ))}
