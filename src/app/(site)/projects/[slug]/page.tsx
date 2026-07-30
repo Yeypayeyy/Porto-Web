@@ -24,8 +24,8 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <main className="min-h-screen bg-[#121513] text-[#f7f5f2]">
-      <Header />
+    <main className="min-h-screen bg-ink text-bone">
+      <Header dark />
       <section className="px-5 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
           <Link
@@ -52,6 +52,29 @@ export default async function ProjectDetailPage({
               <p className="mt-6 max-w-3xl text-lg font-medium leading-9 text-[#efece7] md:text-2xl md:leading-10">
                 {project.summary}
               </p>
+
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-rossoneri px-6 py-3 text-sm font-black uppercase tracking-[0.14em] text-bone transition-colors duration-300 hover:bg-rossoneri-deep"
+                >
+                  Live Demo
+                  <svg
+                    className="h-4 w-4 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              ) : null}
             </div>
 
             <aside className="h-fit rounded-[8px] bg-[#24282b] p-6 ring-1 ring-white/10">

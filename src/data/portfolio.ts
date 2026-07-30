@@ -6,6 +6,7 @@ export type Project = {
   summary: string;
   points: string[];
   image?: string;
+  liveUrl?: string;
   detail: string[];
   featured: boolean;
 };
@@ -17,6 +18,7 @@ export type Experience = {
   location: string;
   description: string;
   accent: string;
+  image: string;
 };
 
 export const projects: Project[] = [
@@ -29,6 +31,7 @@ export const projects: Project[] = [
       "Personal portfolio built as a clean consulting-style profile for projects, experience, and professional identity.",
     points: ["Dark editorial hero", "Project filtering", "Responsive section bands"],
     image: "/Project/porto.webp",
+    liveUrl: "#", // TODO: ganti ke URL live project
     detail: [
       "Built as a personal portfolio system that balances visual identity, professional storytelling, and a fast browsing experience.",
       "Structured the site around reusable section components, responsive layouts, and project/experience data that can keep growing over time.",
@@ -45,6 +48,7 @@ export const projects: Project[] = [
       "Official organization website for KMTETI FT UGM, built to present profile information, divisions, activities, services, and news in a clear digital experience.",
     points: ["Next.js", "Tailwind CSS", "TypeScript"],
     image: "/Project/Screenshot 2026-05-27 014658.png",
+    liveUrl: "#", // TODO: ganti ke URL live project
     detail: [
       "Designed to help students, members, and external visitors understand KMTETI through a clear digital presence.",
       "Organized organization profile, divisions, activities, services, and news into a website structure that feels direct and maintainable.",
@@ -61,6 +65,7 @@ export const projects: Project[] = [
       "Campaign website designed to present candidate profile, vision and mission, experience, work programs, gallery, testimonials, and contact information in one focused page.",
     points: ["Next.js", "Tailwind CSS", "TypeScript"],
     image: "/Project/Screenshot 2026-05-27 020810.png",
+    liveUrl: "#", // TODO: ganti ke URL live project
     detail: [
       "Built as a focused campaign page that introduces a candidate and gives visitors a complete path through profile, vision, programs, and contact.",
       "Composed the content into sections that support quick scanning while still giving enough depth for voters who want more context.",
@@ -79,6 +84,7 @@ export const experiences: Experience[] = [
     description:
       "Leading the organization while aligning divisions, empowering members, and shaping internal development priorities.",
     accent: "Leadership",
+    image: "/Experience/Hero.webp",
   },
   {
     organization: "UGM Blockchain Club",
@@ -88,6 +94,7 @@ export const experiences: Experience[] = [
     description:
       "Managing partnership direction and supporting external collaboration for a student-led blockchain community.",
     accent: "Partnership",
+    image: "/Experience/gallery-6.jpeg",
   },
   {
     organization: "Technocorner",
@@ -97,6 +104,7 @@ export const experiences: Experience[] = [
     description:
       "Coordinating logistics, equipment readiness, and consumption needs for a technology event environment.",
     accent: "Event Ops",
+    image: "/Experience/gallery-5.jpeg",
   },
   {
     organization: "JAWARAGAMA",
@@ -106,6 +114,7 @@ export const experiences: Experience[] = [
     description:
       "Supporting strategic direction, member collaboration, and organizational impact across internal and external programs.",
     accent: "Strategy",
+    image: "/Experience/gallery-3.jpeg",
   },
   {
     organization: "Teknik Fair",
@@ -115,6 +124,7 @@ export const experiences: Experience[] = [
     description:
       "Served as the main bridge between committee teams and guest stars, handling schedules, needs, logistics, and hospitality.",
     accent: "Liaison",
+    image: "/Experience/gallery-2.jpeg",
   },
   {
     organization: "Find IT! UGM",
@@ -124,6 +134,7 @@ export const experiences: Experience[] = [
     description:
       "Supported equipment preparation and operational needs for a university technology event.",
     accent: "Support",
+    image: "/Experience/gallery-1.jpeg",
   },
 ];
 

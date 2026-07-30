@@ -832,6 +832,51 @@ button {
   background-size: 34px 34px, 34px 34px, auto, auto;
 }
 
+/* Experience rail: the dashed route reads as jersey stitching, so the dashes
+   creep forward instead of sitting still. */
+.experience-rail-stitch {
+  animation: experience-rail-stitch 2.4s linear infinite;
+}
+
+@keyframes experience-rail-stitch {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* Progress bar is driven by the rail's own horizontal scroll. Without
+   scroll-timeline support there is nothing honest to show, so it stays out. */
+.experience-rail-progress {
+  visibility: hidden;
+}
+
+@supports (animation-timeline: scroll()) and (timeline-scope: --experience-rail) {
+  .experience-rail-shell {
+    timeline-scope: --experience-rail;
+  }
+
+  .experience-rail {
+    scroll-timeline: --experience-rail inline;
+  }
+
+  .experience-rail-progress {
+    animation: experience-rail-progress 1ms linear both;
+    animation-timeline: --experience-rail;
+    transform: scaleX(0.14); /* resting state if the timeline never activates */
+    transform-origin: left center;
+    visibility: visible;
+  }
+}
+
+@keyframes experience-rail-progress {
+  from {
+    transform: scaleX(0.14);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @supports (animation-timeline: scroll()) {
   .site-header,
   .site-header-panel,
