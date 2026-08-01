@@ -6,17 +6,24 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "@/components/motion/motion-config";
+import { experiences } from "@/data/portfolio";
 
 // Anchored from the left/right edge (not a % of full width) so cards sit in
 // the gutter beside the fixed-width text column and never overlap it.
-const photos = [
-  { src: "/Experience/gallery-1.jpeg", side: "left", offset: "1.5rem", top: "22%", rotate: -8 },
-  { src: "/Experience/gallery-2.jpeg", side: "left", offset: "3.5rem", top: "50%", rotate: 6 },
-  { src: "/Experience/gallery-3.jpeg", side: "left", offset: "1.5rem", top: "80%", rotate: -5 },
-  { src: "/Experience/gallery-5.jpeg", side: "right", offset: "1.5rem", top: "22%", rotate: 7 },
-  { src: "/Experience/gallery-6.jpeg", side: "right", offset: "3.5rem", top: "50%", rotate: -6 },
-  { src: "/Experience/Hero.webp", side: "right", offset: "1.5rem", top: "80%", rotate: 5 },
+const slots = [
+  { side: "left", offset: "1.5rem", top: "22%", rotate: -8 },
+  { side: "left", offset: "3.5rem", top: "50%", rotate: 6 },
+  { side: "left", offset: "1.5rem", top: "80%", rotate: -5 },
+  { side: "right", offset: "1.5rem", top: "22%", rotate: 7 },
+  { side: "right", offset: "3.5rem", top: "50%", rotate: -6 },
+  { side: "right", offset: "1.5rem", top: "80%", rotate: 5 },
 ];
+
+// Pulled from the experience data so renaming a photo there can't leave a dead
+// path here. Deduped: the same shot backs several roles at one event.
+const photos = [...new Set(experiences.flatMap((item) => item.image ?? []))]
+  .slice(0, slots.length)
+  .map((src, i) => ({ src, ...slots[i] }));
 
 const statement =
   "Di sela kuliah, aku bertumbuh lewat kepanitiaan, organisasi, dan orang-orang yang berjalan bersama.";

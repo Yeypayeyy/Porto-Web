@@ -1,4 +1,4 @@
-export type Project = {
+﻿export type Project = {
   slug: string;
   title: string;
   tag: string;
@@ -18,7 +18,8 @@ export type Experience = {
   location: string;
   description: string;
   accent: string;
-  image: string;
+  /** Omit while a role has no photo yet — the UI renders a placeholder. */
+  image?: string;
 };
 
 export const projects: Project[] = [
@@ -75,66 +76,116 @@ export const projects: Project[] = [
   },
 ];
 
+// Newest first. `/experience` reverses this to read the rail as a route.
 export const experiences: Experience[] = [
   {
-    organization: "KMTETI FT UGM",
-    role: "Chairman",
-    period: "Dec 2025 - Present",
+    organization: "TETI Lab Skill",
+    role: "Sub-Coordinator of Mahkamah Division",
+    period: "2026 - Present",
     location: "Yogyakarta, Indonesia",
     description:
-      "Leading the organization while aligning divisions, empowering members, and shaping internal development priorities.",
-    accent: "Leadership",
-    image: "/Experience/Hero.webp",
-  },
-  {
-    organization: "UGM Blockchain Club",
-    role: "Partnerships Manager",
-    period: "Dec 2025 - Present",
-    location: "Yogyakarta, Indonesia",
-    description:
-      "Managing partnership direction and supporting external collaboration for a student-led blockchain community.",
-    accent: "Partnership",
-    image: "/Experience/gallery-6.jpeg",
+      "Leading the Mahkamah division: upholding the rules of the event and handling participant discipline fairly.",
+    accent: "Judiciary",
   },
   {
     organization: "Technocorner",
-    role: "Sub-Coordinator of Logistic, Consumption, and Equipment",
-    period: "Oct 2025 - Present",
+    role: "Sub-Coordinator of Equipment, Logistics, and Consumption",
+    period: "2026",
     location: "Yogyakarta, Indonesia",
     description:
       "Coordinating logistics, equipment readiness, and consumption needs for a technology event environment.",
     accent: "Event Ops",
-    image: "/Experience/gallery-5.jpeg",
+    image: "/Experience/technocorner26.jpeg",
   },
   {
-    organization: "JAWARAGAMA",
-    role: "Vice Chairman",
-    period: "Aug 2025 - Mar 2026",
+    organization: "KMTETI FT UGM",
+    role: "Chairman",
+    period: "2026",
     location: "Yogyakarta, Indonesia",
     description:
-      "Supporting strategic direction, member collaboration, and organizational impact across internal and external programs.",
-    accent: "Strategy",
-    image: "/Experience/gallery-3.jpeg",
+      "Leading the organization while aligning divisions, empowering members, and shaping internal development priorities.",
+    accent: "Leadership",
+    image: "/Experience/KMTETI.webp",
   },
   {
     organization: "Teknik Fair",
     role: "Liaison Officer",
-    period: "Sep 2025 - Oct 2025",
+    period: "2025",
     location: "Yogyakarta, Indonesia",
     description:
       "Served as the main bridge between committee teams and guest stars, handling schedules, needs, logistics, and hospitality.",
     accent: "Liaison",
-    image: "/Experience/gallery-2.jpeg",
+    image: "/Experience/TeknikFair.jpeg",
+  },
+  {
+    organization: "JAWARAGAMA",
+    role: "Vice Chairman",
+    period: "2026",
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Supporting strategic direction, member collaboration, and organizational impact across internal and external programs.",
+    accent: "Strategy",
+    image: "/Experience/Jawaragama2.jpeg",
+  },
+  {
+    organization: "TETI Lab Skill",
+    role: "Mentor",
+    period: "2025",
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Guided a group of new students through the event, keeping them informed, supported, and on schedule.",
+    accent: "Mentorship",
+    image: "/Experience/TLS.jpeg",
+  },
+  {
+    organization: "TETI Lab Skill",
+    role: "Coordinator of Equipment, Logistics, and Consumption",
+    period: "2025",
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Ran the equipment, logistics, and consumption team end to end, from planning needs to execution on event day.",
+    accent: "Event Ops",
+    image: "/Experience/BPO.jpeg",
+  },
+  {
+    organization: "JAWARAGAMA",
+    role: "Staff of Human Resource Development (PSDM)",
+    period: "2025",
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Developed member engagement programs for the Banten student family community at Universitas Gadjah Mada.",
+    accent: "People Dev",
+    image: "/Experience/Jawaragama.jpeg",
+  },
+  {
+    organization: "KMTETI FT UGM",
+    role: "Staff of Organizational Development Bureau (BPO)",
+    period: "2025",
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Supported internal organizational development, member growth programs, and cross-division coordination.",
+    accent: "Organizational Dev",
+    image: "/Experience/BPO3.jpeg",
+  },
+  {
+    organization: "Technocorner",
+    role: "Staff of Equipment, Logistics, and Consumption",
+    period: "2025",
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Prepared equipment and handled logistics and consumption operations for a large technology event.",
+    accent: "Event Ops",
+    image: "/Experience/Technocorner.jpeg",
   },
   {
     organization: "Find IT! UGM",
-    role: "Equipment Staff",
-    period: "Oct 2024 - Jun 2025",
+    role: "Staff of Equipment, Logistics, and Consumption",
+    period: "2025",
     location: "Yogyakarta, Indonesia",
     description:
       "Supported equipment preparation and operational needs for a university technology event.",
     accent: "Support",
-    image: "/Experience/gallery-1.jpeg",
+    image: "/Experience/FindIT25.jpeg",
   },
 ];
 

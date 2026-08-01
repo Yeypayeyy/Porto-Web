@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { experiences } from "@/data/portfolio";
+import { experiences, type Experience } from "@/data/portfolio";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 
@@ -48,6 +48,29 @@ function Pin({ flipped }: { flipped: boolean }) {
   );
 }
 
+// Shared by the rail card and the detail list so a stop without a photo yet
+// degrades the same way in both places.
+function StopPhoto({ stop, sizes }: { stop: Experience; sizes: string }) {
+  if (!stop.image) {
+    return (
+      <div className="flex aspect-[4/3] w-full items-center justify-center bg-bone/[0.03] px-2 text-center text-[0.55rem] font-black uppercase leading-tight tracking-[0.2em] text-bone/25">
+        Foto menyusul
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={stop.image}
+      alt={`${stop.organization} — ${stop.role}`}
+      width={640}
+      height={480}
+      sizes={sizes}
+      className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+    />
+  );
+}
+
 export default function ExperiencePage() {
   return (
     <main className="min-h-screen bg-ink text-bone">
@@ -62,7 +85,7 @@ export default function ExperiencePage() {
             Rute selama kuliah
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-snug text-bone/60 sm:text-xl">
-            Enam pemberhentian, dari staf perlengkapan sampai memimpin
+            {stops.length} pemberhentian, dari staf perlengkapan sampai memimpin
             organisasi. Geser ke kanan untuk menyusuri rutenya.
           </p>
         </div>
@@ -74,8 +97,11 @@ export default function ExperiencePage() {
           <div className="shrink-0 grow-0 basis-6 sm:basis-24" />
 
           {/* w-max: the wave is absolutely positioned against this box, so it
-              has to be as wide as all the stops, not as wide as the viewport. */}
-          <div className="relative flex h-[32rem] w-max shrink-0">
+              has to be as wide as all the stops, not as wide as the viewport.
+              Height is left to the tallest card: flex stretches every stop to
+              it, and each stop splits that height into two equal rows, so the
+              wave's centre line stays shared without a magic fixed height. */}
+          <div className="relative flex w-max shrink-0 items-stretch">
             {/* w-full, not inset-x-0: an SVG is a replaced element, so an auto
                 width falls back to its intrinsic viewBox ratio instead. */}
             <svg
@@ -100,66 +126,55 @@ export default function ExperiencePage() {
             {stops.map((stop, index) => {
               const up = index % 2 === 0;
 
-              return (
-                <article
-                  key={`${stop.organization}-${stop.role}`}
-                  className="relative w-[17rem] shrink-0 snap-center px-3 sm:w-[21rem] sm:px-4"
-                >
-                  <span
-                    className="absolute left-1/2 -translate-x-1/2"
-                    style={
-                      up
-                        ? { bottom: "calc(50% + 2.4rem)" }
-                        : { top: "calc(50% + 2.4rem)" }
-                    }
-                  >
-                    <Pin flipped={!up} />
-                  </span>
-
+              const photo = (
                   <figure
-                    className="group absolute inset-x-3 overflow-hidden rounded-[1.75rem] bg-bone/5 shadow-[0_28px_60px_-30px_rgba(0,0,0,0.9)] ring-1 ring-bone/10 [corner-shape:squircle] sm:inset-x-4"
-                    style={
-                      up
-                        ? { top: "calc(50% - 1.6rem)" }
-                        : { bottom: "calc(50% - 3.2rem)" }
-                    }
+                    className={`group relative overflow-hidden rounded-[1.75rem] bg-bone/5 shadow-[0_28px_60px_-30px_rgba(0,0,0,0.9)] ring-1 ring-bone/10 [corner-shape:squircle] ${
+                      up ? "self-start" : "self-end mb-[3.2rem]"
+                    }`}
                   >
-                    <Image
-                      src={stop.image}
-                      alt={`${stop.organization} — ${stop.role}`}
-                      width={640}
-                      height={480}
-                      sizes="(min-width: 640px) 21rem, 17rem"
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                    />
+                    <StopPhoto stop={stop} sizes="(min-width: 640px) 21rem, 17rem" />
                     <figcaption className="absolute bottom-3 left-3 rounded-full bg-ink/75 px-3 py-1.5 text-[0.62rem] font-black uppercase tracking-[0.16em] text-bone backdrop-blur">
                       {stop.accent}
                     </figcaption>
                   </figure>
+                );
 
+                // pb/pt 2.4rem = the peak/trough offset, so the pin tip lands
+                // exactly on the wave instead of being placed by hand.
+                const caption = (
                   <div
-                    className="absolute inset-x-2 text-center"
-                    style={
-                      up
-                        ? { bottom: "calc(50% + 5rem)" }
-                        : { top: "calc(50% + 5rem)" }
-                    }
+                    className={`flex flex-col items-center gap-2 text-center ${
+                      up ? "justify-end pb-[2.4rem]" : "justify-start pt-[2.4rem]"
+                    }`}
                   >
-                    <p className="text-[0.68rem] font-black uppercase tracking-[0.2em] text-rossoneri">
-                      {String(index + 1).padStart(2, "0")} / {stop.period}
-                    </p>
-                    <h2 className="mt-2 text-2xl font-extrabold leading-tight tracking-tight">
-                      {stop.organization}
-                    </h2>
-                    <p className="mt-1.5 text-sm font-bold text-bone/70">
-                      {stop.role}
-                    </p>
-                    <p className="mt-2 text-xs leading-5 text-bone/45">
-                      {stop.location}
-                    </p>
+                    {!up && <Pin flipped />}
+                    <div>
+                      <p className="text-[0.68rem] font-black uppercase tracking-[0.2em] text-rossoneri">
+                        {String(index + 1).padStart(2, "0")} / {stop.period}
+                      </p>
+                      <h2 className="mt-2 text-2xl font-extrabold leading-tight tracking-tight">
+                        {stop.organization}
+                      </h2>
+                      <p className="mt-1.5 text-sm font-bold text-bone/70">
+                        {stop.role}
+                      </p>
+                      <p className="mt-2 text-xs leading-5 text-bone/45">
+                        {stop.location}
+                      </p>
+                    </div>
+                    {up && <Pin flipped={false} />}
                   </div>
-                </article>
-              );
+                );
+
+                return (
+                  <article
+                    key={`${stop.organization}-${stop.role}`}
+                    className="grid w-[17rem] shrink-0 snap-center grid-rows-2 px-3 sm:w-[21rem] sm:px-4"
+                  >
+                    {up ? caption : photo}
+                    {up ? photo : caption}
+                  </article>
+                );
             })}
           </div>
 
@@ -174,16 +189,30 @@ export default function ExperiencePage() {
       <section className="px-6 py-24 sm:px-10">
         <div className="mx-auto grid max-w-[94rem] gap-10 border-t border-bone/10 pt-12 lg:grid-cols-2">
           {stops.map((stop) => (
-            <div key={`${stop.organization}-detail`}>
-              <h3 className="text-xl font-extrabold tracking-tight">
-                {stop.organization}
-                <span className="ml-3 text-sm font-bold text-bone/40">
-                  {stop.period}
-                </span>
-              </h3>
-              <p className="mt-3 text-base leading-7 text-bone/60">
-                {stop.description}
-              </p>
+            <div
+              key={`${stop.organization}-${stop.role}-detail`}
+              className="grid grid-cols-[6.5rem_1fr] gap-5 sm:grid-cols-[9rem_1fr] sm:gap-6"
+            >
+              <figure className="group self-start overflow-hidden rounded-[1.25rem] bg-bone/5 ring-1 ring-bone/10 [corner-shape:squircle]">
+                <StopPhoto
+                  stop={stop}
+                  sizes="(min-width: 640px) 9rem, 6.5rem"
+                />
+              </figure>
+              <div>
+                <h3 className="text-xl font-extrabold tracking-tight">
+                  {stop.organization}
+                  <span className="ml-3 text-sm font-bold text-bone/40">
+                    {stop.period}
+                  </span>
+                </h3>
+                <p className="mt-1 text-sm font-bold text-bone/70">
+                  {stop.role}
+                </p>
+                <p className="mt-3 text-base leading-7 text-bone/60">
+                  {stop.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -193,7 +222,7 @@ export default function ExperiencePage() {
             href="/projects"
             className="inline-flex items-center gap-2 text-lg text-rossoneri"
           >
-            <span className="hero-link-underline">Lihat projects</span>
+       
             <svg
               className="h-4 w-4 shrink-0"
               viewBox="0 0 24 24"
