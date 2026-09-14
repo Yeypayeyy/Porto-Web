@@ -217,11 +217,22 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const skills = [
-  "Team Management",
-  "Marketing Strategy",
-  "Marketing",
-  "Python Essentials 1",
-  "Logistics Coordination",
-  "Partnership Management",
+/** Grouped for /about. Every item comes from a shipped or in-progress project. */
+export const skillGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "C#", "Kotlin", "SQL"],
+  },
+  {
+    label: "Frameworks",
+    items: ["Next.js", "React", "Tailwind CSS", "Payload CMS", "FastAPI", "WPF", "GSAP", "Framer Motion"],
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL", "Supabase", "Drizzle ORM", "SQLite"],
+  },
+  {
+    label: "Tools",
+    items: ["Git/GitHub", "Vercel", "pnpm", "Figma"],
+  },
 ];

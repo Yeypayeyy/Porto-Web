@@ -35,7 +35,19 @@ const characterPoses = [
  * icon JS reaches the client. Lenis is used in the project but has no official
  * mark, so it is omitted rather than shown as the one bare label in the row.
  */
-const marquee = techStack;
+const marqueeLabels = [
+  "Next.js",
+  "TypeScript",
+  "Payload CMS",
+  "PostgreSQL",
+  "Supabase",
+  "Python",
+  "FastAPI",
+  "C# / .NET",
+];
+const marquee = marqueeLabels.flatMap((label) =>
+  techStack.filter((item) => item.label === label),
+);
 
 export function HeroSection() {
   return (
@@ -78,11 +90,11 @@ export function HeroSection() {
             delay={0.14}
           >
             <strong className="font-semibold text-ink">
-              Hi! I&apos;m Muhammad Farrel Al Ghazy
+              Hi! I&apos;m Muhammad Farrel Al Ghazy.
             </strong>{" "}
-            — Information Technology student at Universitas Gadjah Mada and fullstack developer
-            focused on building web systems, leading teams, and turning ideas
-            into shipped products.
+            Information Engineering student at Universitas Gadjah Mada and
+            fullstack developer focused on building web systems, leading teams,
+            and turning ideas into shipped products.
           </Reveal>
 
           <Reveal
