@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Download, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 /* lucide v1 sudah menghapus brand icon, jadi logo asli dipakai sebagai inline SVG (simple-icons paths). */
 type BrandProps = { className?: string };
@@ -131,14 +131,13 @@ export function Footer() {
                 </Link>
               </MagneticButton>
               <MagneticButton>
-                {/* ponytail: href masih placeholder, isi path CV kalau filenya sudah ada di public/ */}
                 <Link
-                  href="#"
+                  href="/cv"
                   className="group inline-flex items-center gap-3 rounded-full border border-ink/20 px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-bone"
                 >
-                  Download CV
-                  <Download
-                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                  View CV
+                  <ArrowUpRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
                 </Link>

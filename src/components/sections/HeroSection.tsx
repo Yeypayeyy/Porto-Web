@@ -78,7 +78,7 @@ export function HeroSection() {
             delay={0.14}
           >
             <strong className="font-semibold text-ink">
-              Hi! I'm Muhammad Farrel Al Ghazy
+              Hi! I&apos;m Muhammad Farrel Al Ghazy
             </strong>{" "}
             — Information Technology student at Universitas Gadjah Mada and fullstack developer
             focused on building web systems, leading teams, and turning ideas
@@ -112,14 +112,22 @@ export function HeroSection() {
               </Link>
             </MagneticButton>
 
-            <a
-              href="https://github.com/Yeypayeyy"
-              target="_blank"
-              rel="noreferrer"
-              className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
-            >
-              GitHub ↗
-            </a>
+            <div className="flex items-center gap-7">
+              <Link
+                href="/cv"
+                className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
+              >
+                View CV ↗
+              </Link>
+              <a
+                href="https://github.com/Yeypayeyy"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
+              >
+                GitHub ↗
+              </a>
+            </div>
           </Reveal>
         </div>
 
