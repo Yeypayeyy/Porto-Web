@@ -62,7 +62,7 @@ function StopPhoto({ stop, sizes }: { stop: Experience; sizes: string }) {
   return (
     <Image
       src={stop.image}
-      alt={`${stop.organization} — ${stop.role}`}
+      alt={`${stop.organization}, ${stop.role}`}
       width={640}
       height={480}
       sizes={sizes}

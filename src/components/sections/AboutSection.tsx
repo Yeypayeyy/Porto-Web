@@ -85,7 +85,7 @@ export function AboutSection() {
           <span className="font-medium text-rossoneri">team leadership</span>,
           and{" "}
           <span className="font-medium text-rossoneri">event operations</span>.
-          I build systems that stay maintainable after launch — and lead the
+          I build systems that stay maintainable after launch, and I lead the
           teams that ship them.
         </Reveal>
 
