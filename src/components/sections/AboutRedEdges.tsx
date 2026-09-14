@@ -86,7 +86,7 @@ export function AboutRedEdges() {
   }, []);
 
   return (
-    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0">
+    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
       <div
         data-tide="top"
         className="absolute left-1/2 w-[180%] rounded-[50%] bg-rossoneri [will-change:transform]"
