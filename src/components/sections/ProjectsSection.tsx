@@ -13,7 +13,8 @@ const arrow = (
 );
 
 export function ProjectsSection() {
-  const [lead, ...rest] = projects;
+  // Bento grid is sized for one lead + two cards; the rest live on /projects.
+  const [lead, ...rest] = projects.filter((project) => project.featured);
 
   return (
     <section
