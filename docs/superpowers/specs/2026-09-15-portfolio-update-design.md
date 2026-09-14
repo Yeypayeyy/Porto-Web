@@ -34,9 +34,11 @@ Order and content:
 | `kmteti-website` | KMTETI FT UGM Website | Fullstack / Web Development | `public/Project/Screenshot 2026-09-03 135540.png` | Next.js, Payload CMS, PostgreSQL, GSAP |
 | `suncost` | SunCost | Desktop App / Software Architecture | `public/Project/suncost-energi.png` (copied from `C:\Users\farre\Downloads\3 · Hasil — Energi.png`) | C#, WPF, SQLite, Weather API |
 | `campaign-web` | Campaign Web | Frontend / UI-UX | existing | Next.js, Tailwind CSS, TypeScript |
-| `foundit` | FoundIT! | On Progress | none (UI placeholder) | Python, FastAPI, scikit-learn, CV + NLP |
+| `foundit` | FoundIT! | AI / Backend (tag: On Progress) | none (UI placeholder) | Python, FastAPI, scikit-learn, CV + NLP |
 
 - Delete `portfolio-web-system`.
+- `featured: true` only on Catet!, KMTETI, SunCost. The homepage bento grid fits a lead plus two cards; Campaign Web and FoundIT! appear on `/projects`.
+- Rename `Screenshot 2026-09-03 135540.png` to `public/Project/kmteti-website.png`.
 - Keep slug `kmteti-website` so existing links still resolve.
 - Copy sources: Catet! README (auto-capture of m-banking/QRIS notifications, one-tap categorisation, raw payload kept when parsing fails); SunCost README (rooftop solar potential, savings, payback; Farrel is team lead and software architect); KMTETI README (official portal, news, cabinet profile, divisions, services; Payload CMS, Supabase storage); FoundIt README (lost and found matching with image and text similarity, Farrel is a team member).
 - Projects without a real URL keep `liveUrl: "#"` or omit it. The UI must not show a live link for `#` or missing URLs. FoundIT! gets no live link.
@@ -60,19 +62,15 @@ Homepage `AboutSection` stays as a summary; only its copy changes (em dash remov
 
 ## 4. Tech stack
 
-Replace `skills` in `portfolio.ts` with a grouped export:
+Replace `skills` in `portfolio.ts` with a grouped export `skillGroups: { label: string; items: string[] }[]` (the name `techStack` is already taken by `src/data/tech-icons.ts`):
 
-```ts
-export const techStack = {
-  Languages: ["TypeScript", "JavaScript", "Python", "C#", "Kotlin", "SQL"],
-  Frameworks: ["Next.js", "React", "Tailwind CSS", "Payload CMS", "FastAPI", "WPF", "GSAP", "Framer Motion"],
-  Databases: ["PostgreSQL", "Supabase", "Drizzle ORM", "SQLite"],
-  Tools: ["Git/GitHub", "Vercel", "pnpm", "Figma"],
-};
-```
+- Languages: TypeScript, JavaScript, Python, C#, Kotlin, SQL
+- Frameworks: Next.js, React, Tailwind CSS, Payload CMS, FastAPI, WPF, GSAP, Framer Motion
+- Databases: PostgreSQL, Supabase, Drizzle ORM, SQLite
+- Tools: Git/GitHub, Vercel, pnpm, Figma
 
 - `/about` renders it grouped.
-- Hero marquee shows Next.js, TypeScript, Payload CMS, PostgreSQL, Supabase, Python, FastAPI, C#. Keep the existing marquee markup and icon approach; icons only where one already exists or lucide/simple markup covers it, otherwise text only.
+- Hero marquee shows Next.js, TypeScript, Payload CMS, PostgreSQL, Supabase, Python, FastAPI, C# / .NET, using brand paths in `tech-icons.ts` (simple-icons has no C# mark, so the .NET mark stands in).
 - Remove every remaining import of `skills`.
 
 ## 5. Mobile fixes
