@@ -32,7 +32,7 @@ export function AboutSection() {
       id="about"
       /* `h-`, not `min-h-`: the panel pins below the header, so anything taller
          than the pin window (100vh − header) hangs off-screen and gets cut. */
-      className="relative flex flex-col justify-center overflow-hidden bg-bone px-6 py-20 text-ink md:h-[calc(100vh-4.6rem)] md:px-12 md:py-[max(4rem,9vh)]"
+      className="relative z-10 flex flex-col justify-center overflow-hidden rounded-b-[2rem] bg-bone px-6 py-20 shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] md:rounded-b-[3rem] text-ink md:h-[calc(100vh-4.6rem)] md:px-12 md:py-[max(4rem,9vh)]"
     >
       <AboutRedEdges />
 

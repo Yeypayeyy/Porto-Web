@@ -55,11 +55,14 @@ const contactLinks = [
   },
 ];
 
-export function Footer() {
+/** `overlap`: slide up under a section with rounded bottom corners (homepage). */
+export function Footer({ overlap = false }: { overlap?: boolean }) {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-bone px-6 py-16 text-ink md:px-12 md:py-20"
+      className={`relative overflow-hidden bg-bone px-6 pb-16 text-ink md:px-12 md:pb-20 ${
+        overlap ? "-mt-12 pt-28 md:-mt-16 md:pt-36" : "pt-16 md:pt-20"
+      }`}
     >
       {/* Red jersey-wing geometry with gold champion trim (desktop margins only) */}
       <svg
