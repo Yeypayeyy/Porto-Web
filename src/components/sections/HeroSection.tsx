@@ -32,22 +32,9 @@ const characterPoses = [
 
 /**
  * Rendered server-side, so the brand paths are inlined into the HTML and no
- * icon JS reaches the client. Lenis is used in the project but has no official
- * mark, so it is omitted rather than shown as the one bare label in the row.
+ * icon JS reaches the client.
  */
-const marqueeLabels = [
-  "Next.js",
-  "TypeScript",
-  "Payload CMS",
-  "PostgreSQL",
-  "Supabase",
-  "Python",
-  "FastAPI",
-  "C# / .NET",
-];
-const marquee = marqueeLabels.flatMap((label) =>
-  techStack.filter((item) => item.label === label),
-);
+const marquee = techStack;
 
 export function HeroSection() {
   return (

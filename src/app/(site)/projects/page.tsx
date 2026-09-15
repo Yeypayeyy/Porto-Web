@@ -46,7 +46,10 @@ export default function ProjectsPage() {
                       className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                   ) : (
-                    <div className="project-preview-grid flex aspect-[4/3] w-full items-center justify-center p-6 text-center text-3xl font-black text-white/20">
+                    <div
+                      aria-hidden="true"
+                      className="project-preview-grid flex aspect-[4/3] w-full items-center justify-center p-6 text-center text-3xl font-black text-white/20"
+                    >
                       {project.title}
                     </div>
                   )}

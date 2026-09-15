@@ -101,7 +101,7 @@ export default async function ProjectDetailPage({
                   src={project.image}
                   alt={`${project.title} preview`}
                   fill
-                  priority
+                  preload
                   sizes="(min-width: 768px) 1100px, calc(100vw - 2.5rem)"
                   className="object-cover object-top"
                 />

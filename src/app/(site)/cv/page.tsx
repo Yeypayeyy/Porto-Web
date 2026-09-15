@@ -29,7 +29,7 @@ export default function CvPage() {
             <a
               href={CV_PATH}
               download
-              className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-bone transition-colors duration-300 hover:bg-rossoneri"
+              className="group hidden items-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-bone transition-colors duration-300 hover:bg-rossoneri md:inline-flex"
             >
               Download PDF
               <Download className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />

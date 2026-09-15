@@ -78,7 +78,7 @@ export function AboutSection() {
         >
           I&apos;m an{" "}
           <strong className="font-semibold text-ink">
-            IT student and fullstack developer
+            Information Engineering student and fullstack developer
           </strong>{" "}
           working across{" "}
           <span className="font-medium text-rossoneri">web development</span>,{" "}
