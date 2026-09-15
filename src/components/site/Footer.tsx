@@ -83,11 +83,17 @@ export function Footer({ overlap = false }: { overlap?: boolean }) {
           strokeWidth="2.5"
           opacity="0.8"
         />
-        <path
-          d="M0 900 L0 690 C 120 750 150 860 60 900 Z"
-          fill="var(--rossoneri)"
-          opacity="0.9"
-        />
+      </svg>
+      {/* Fixed-size corner swoosh, not part of the stretched SVG above: stretched,
+          it grew with the section and ran into the CTA buttons. Kept under
+          4.5rem tall so it stays below them. */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 hidden h-[4.5rem] w-40 lg:block"
+        viewBox="0 0 160 72"
+        fill="none"
+      >
+        <path d="M0 72 V8 C 60 20 120 50 150 72 Z" fill="var(--rossoneri)" opacity="0.9" />
       </svg>
 
       <div className="relative z-10 mx-auto max-w-[80rem]">
