@@ -11,14 +11,15 @@ export default function Home() {
     <main className="min-h-screen bg-bone text-ink">
       <Header />
       <HeroSection />
-      {/* Seams mark the three tone flips only. About → Projects is bone on
-          bone, so it stays unmarked rather than becoming decoration. */}
+      {/* Seams mark the three tone flips only: hero marquee (ink) → About
+          (bone) → Projects (ink). Projects → Experience is ink on ink, so it
+          stays unmarked. */}
       <JerseySeam top="var(--ink)" bottom="var(--bone)" />
       <AboutSection />
-      <ProjectsSection />
       <JerseySeam top="var(--bone)" bottom="var(--ink)" flip />
+      <ProjectsSection />
       <ExperienceSection />
-      <JerseySeam top="var(--ink)" bottom="var(--bone)" flip />
+      <JerseySeam top="var(--ink)" bottom="var(--bone)" />
       <Footer />
     </main>
   );
