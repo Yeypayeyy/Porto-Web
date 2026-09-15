@@ -138,7 +138,7 @@ export const experiences: Experience[] = [
   {
     organization: "Teknik Fair",
     role: "Liaison Officer",
-    period: "2026",
+    period: "2025",
     location: "Yogyakarta, Indonesia",
     description:
       "Served as the main bridge between committee teams and guest stars, handling schedules, needs, logistics, and hospitality.",
