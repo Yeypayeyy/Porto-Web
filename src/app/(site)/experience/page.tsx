@@ -191,7 +191,7 @@ export default function ExperiencePage() {
           {stops.map((stop) => (
             <div
               key={`${stop.organization}-${stop.role}-detail`}
-              className="grid grid-cols-[6.5rem_1fr] gap-5 sm:grid-cols-[9rem_1fr] sm:gap-6"
+              className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-6"
             >
               <figure className="group self-start overflow-hidden rounded-[1.25rem] bg-bone/5 ring-1 ring-bone/10 [corner-shape:squircle]">
                 <StopPhoto
@@ -201,7 +201,7 @@ export default function ExperiencePage() {
               </figure>
               <div>
                 <h3 className="text-xl font-extrabold tracking-tight">
-                  {stop.organization}
+                  {stop.organization}{" "}
                   <span className="ml-3 text-sm font-bold text-bone/40">
                     {stop.period}
                   </span>
