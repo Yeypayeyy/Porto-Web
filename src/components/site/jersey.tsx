@@ -11,15 +11,17 @@ export function JerseySeam({
   top,
   bottom,
   flip = false,
+  className = "",
 }: {
   top: string;
   bottom: string;
   flip?: boolean;
+  className?: string;
 }) {
   return (
     <div
       aria-hidden="true"
-      className="relative h-10 w-full overflow-hidden md:h-20"
+      className={`relative h-10 w-full overflow-hidden md:h-20 ${className}`}
       style={{ background: flip ? top : bottom }}
     >
       <svg

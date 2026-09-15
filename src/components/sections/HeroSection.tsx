@@ -3,7 +3,6 @@ import Image from "next/image";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
-import { techStack } from "@/data/tech-icons";
 
 /** Ordered left→right. The coffee pose is the tallest, so it anchors the group. */
 const characterPoses = [
@@ -29,12 +28,6 @@ const characterPoses = [
     priority: false,
   },
 ];
-
-/**
- * Rendered server-side, so the brand paths are inlined into the HTML and no
- * icon JS reaches the client.
- */
-const marquee = techStack;
 
 export function HeroSection() {
   return (
@@ -164,32 +157,6 @@ export function HeroSection() {
             </div>
           ))}
         </Reveal>
-      </div>
-
-      {/* Bottom marquee — the black structural block that closes the fold. */}
-      <div className="relative z-10 mt-6 overflow-hidden bg-ink py-4">
-        <div className="hero-marquee flex w-max items-center gap-8 whitespace-nowrap">
-          {[...marquee, ...marquee, ...marquee].map((item, i) => (
-            <span
-              key={i}
-              className="flex items-center gap-8 font-display text-2xl font-black uppercase tracking-[-0.01em] text-off-white md:text-3xl"
-            >
-              <span className="flex items-center gap-3">
-                {/* Monochrome so the band keeps to black / off-white / gold. */}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-5 w-5 shrink-0 md:h-6 md:w-6"
-                >
-                  <path d={item.path} />
-                </svg>
-                {item.label}
-              </span>
-              <span className="text-gold">✦</span>
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );

@@ -192,19 +192,6 @@ button {
   font: inherit;
 }
 
-.hero-marquee {
-  animation: hero-marquee-scroll 55s linear infinite;
-}
-
-@keyframes hero-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
 .hero-link-underline {
   position: relative;
 }
