@@ -4,47 +4,60 @@ import { TextReveal } from "@/components/motion/TextReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 
-/** Ordered left→right. The coffee pose is the tallest, so it anchors the group. */
-const characterPoses = [
-  {
-    src: "/images/char-almet-peace.png",
-    alt: "",
-    size: "hidden sm:block sm:h-[min(34vh,17rem)] lg:h-[min(48vh,25rem,31vw)]",
-    overlap: "-mr-7 lg:-mr-16",
-    priority: false,
-  },
-  {
-    src: "/images/char-almet-coffee.png",
-    alt: "Pixel-art illustration of Farrel in a UGM almamater jacket, holding a coffee cup",
-    size: "h-[min(38vh,19rem)] sm:h-[min(46vh,24rem)] lg:h-[min(62vh,33rem,40vw)]",
-    overlap: "z-10 -mr-7 lg:-mr-16",
-    priority: true,
-  },
-  {
-    src: "/images/char-almet-think.png",
-    alt: "",
-    size: "h-[min(30vh,15rem)] sm:h-[min(38vh,19rem)] lg:h-[min(54vh,28rem,34vw)]",
-    overlap: "",
-    priority: false,
-  },
-];
+/* Capital "Experience" matches the folder on disk. Linux deploys are
+   case-sensitive, so this path must not be lowercased. */
+const GROUND = "/Experience/KMTETI.webp";
 
 export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-bone"
+      className="relative z-0 flex min-h-[100svh] flex-col overflow-hidden bg-ink text-bone"
     >
-      <div className="relative z-10 mx-auto grid w-full max-w-[94rem] flex-1 items-center gap-10 px-6 pb-6 pt-24 md:px-12 md:pt-28 lg:grid-cols-[minmax(0,55fr)_minmax(0,45fr)] lg:gap-10">
-        {/* Sits just above the optical centre so the composition reads
-            editorial rather than rigidly centred. */}
-        <div className="lg:pb-8">
+      {/* The photograph is the floor of the hero: the claim and the evidence
+          for it land at the same moment. Desaturated so the only real colour
+          left on screen is the brand red. */}
+      <Image
+        src={GROUND}
+        alt="KMTETI FT UGM committee on stage during a department event"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center [filter:grayscale(0.55)_contrast(1.05)]"
+      />
+
+      {/* Two scrims: one across, one up. The across pass keeps the copy side
+          near solid ink for contrast, the up pass seats the section edge. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: [
+            "linear-gradient(100deg, rgba(10,10,10,0.94) 26%, rgba(10,10,10,0.58) 58%, rgba(10,10,10,0.8) 100%)",
+            "linear-gradient(to top, rgba(10,10,10,0.95), transparent 46%)",
+          ].join(","),
+        }}
+      />
+
+      {/* About now rides 3rem (4rem from md) up over this edge, so the bottom
+          padding at each width is the overlap plus room to spare. Without it the
+          bone panel lands on the CTA row. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[94rem] flex-1 flex-col px-6 pb-20 pt-24 md:px-12 md:pb-[6.5rem] md:pt-28 lg:pb-0">
+        <div className="flex flex-1 flex-col justify-end lg:pb-[max(6.5rem,10vh)]">
           <TextReveal
             as="h1"
             immediate
-            className="font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[0.86] tracking-[-0.045em]"
+            /* The clamp floor is itself a min(): below ~366px "FRLAGEE." at a
+               fixed 3.2rem is wider than the padded viewport, which is what put
+               a horizontal scroll in the section. 14vw takes over there and the
+               word keeps fitting; at 360px and up nothing changes.
+               -ml optically aligns the F's sidebearing to the text column. */
+            className="font-display text-[clamp(min(3.2rem,14vw),7.4vw,7.5rem)] font-black uppercase leading-[0.84] tracking-[-0.05em] md:-ml-[0.055em]"
           >
-            <span className="block w-max overflow-hidden pb-[0.12em] pt-[0.04em]">
+            {/* w-max keeps the reveal mask from clipping the final glyph;
+                max-w-full stops that same w-max from ever outgrowing the
+                column, so the section has nothing to scroll. */}
+            <span className="block w-max max-w-full overflow-hidden pb-[0.12em] pt-[0.04em]">
               <span data-line className="block">
                 Frlagee<span className="text-rossoneri">.</span>
               </span>
@@ -53,7 +66,7 @@ export function HeroSection() {
 
           <Reveal
             immediate
-            className="mt-9 max-w-[35rem] text-base leading-[1.75] text-bone/75"
+            className="mt-6 max-w-[27rem] text-pretty text-base leading-[1.7] text-bone/75"
             delay={0.14}
           >
             <strong className="font-semibold text-bone">
@@ -65,7 +78,7 @@ export function HeroSection() {
 
           <Reveal
             immediate
-            className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9"
+            className="mt-9 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9"
             delay={0.2}
           >
             <MagneticButton className="w-full sm:w-auto">
@@ -108,41 +121,6 @@ export function HeroSection() {
             </div>
           </Reveal>
         </div>
-
-        {/* Three almamater poses, bottom-aligned and staggered in height so the
-            group reads as one lineup rather than three equal figures. Each box
-            is bound by height, so they never outgrow the viewport or crowd the
-            ticker. One diffuse glow sits behind the whole group. */}
-        <Reveal
-          immediate
-          delay={0.26}
-          className="relative order-first flex items-end justify-center self-end lg:order-none lg:justify-end"
-        >
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-x-[28%] -bottom-[16%] -top-[14%] -z-10"
-            style={{
-              background:
-                "radial-gradient(closest-side at 50% 58%, color-mix(in oklab, var(--rossoneri) 16%, transparent), transparent 76%)",
-            }}
-          />
-
-          {characterPoses.map((pose) => (
-            <div
-              key={pose.src}
-              className={`relative aspect-[1/2] ${pose.size} ${pose.overlap}`}
-            >
-              <Image
-                src={pose.src}
-                alt={pose.alt}
-                fill
-                priority={pose.priority}
-                sizes="(min-width: 1024px) 15rem, 9rem"
-                className="object-contain [image-rendering:pixelated] [mask-image:linear-gradient(to_bottom,#000_86%,transparent_99%)]"
-              />
-            </div>
-          ))}
-        </Reveal>
       </div>
     </section>
   );
