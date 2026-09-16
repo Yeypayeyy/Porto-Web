@@ -114,6 +114,12 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  /* Every section already clips its own overflow, so nothing should escape
+     horizontally — except at runtime, when ScrollTrigger pins the About panel
+     and sizes the pin-spacer in pixels. `clip`, not `hidden`: hidden would turn
+     the root into a scroll container and break the pinning and the sticky
+     header along with it. clip just refuses the axis. */
+  overflow-x: clip;
 }
 
 /* Lenis smooth-scroll (native behaviour is disabled while Lenis is active) */
