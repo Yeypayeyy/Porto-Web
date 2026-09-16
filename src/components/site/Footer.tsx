@@ -99,8 +99,7 @@ export function Footer({ overlap = false }: { overlap?: boolean }) {
       <div className="relative z-10 mx-auto max-w-[80rem]">
         <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-16 lg:pr-[8%]">
           <div className="min-w-0 max-w-xl">
-            <Reveal className="mb-5 flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.34em] text-gold">
-              <span className="h-px w-10 bg-gold" />
+            <Reveal className="mb-5 text-[0.7rem] font-semibold uppercase tracking-[0.34em] text-gold">
               Get in touch
             </Reveal>
             <TextReveal

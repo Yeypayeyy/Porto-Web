@@ -57,8 +57,7 @@ export function AboutSection() {
           </div>
         </Reveal>
 
-        <div className="flex w-full items-center gap-6">
-          <span aria-hidden="true" className="h-px flex-1 bg-ink/15" />
+        <div className="flex w-full items-center justify-center">
           <TextReveal
             as="h2"
             className="font-display text-[clamp(1.9rem,4vw,3.1rem)] font-black uppercase leading-none tracking-[-0.035em]"
@@ -69,7 +68,6 @@ export function AboutSection() {
               </span>
             </span>
           </TextReveal>
-          <span aria-hidden="true" className="h-px flex-1 bg-ink/15" />
         </div>
 
         <Reveal

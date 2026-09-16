@@ -1355,13 +1355,6 @@ button {
   line-height: 1;
 }
 
-.intro-rule {
-  background: linear-gradient(90deg, var(--rossoneri), var(--rossoneri-deep));
-  height: 2px;
-  width: clamp(3rem, 10vw, 6.5rem);
-  will-change: transform;
-}
-
 .intro-tagline {
   color: var(--gold);
   font-family: var(--font-mono);

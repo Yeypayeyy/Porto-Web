@@ -10,7 +10,7 @@ import { useTransition } from "./TransitionContext";
  * Dual-purpose curtain overlay:
  *
  * 1. **Intro** (first visit per session, ~3.5 s):
- *    Black curtain with "FrlAgee" monogram, red rule, and "AG" tagline.
+ *    Black curtain with "FrlAgee" monogram and "AG" tagline.
  *    Holds for a beat, then slides up to reveal the site.
  *
  * 2. **Page transition** (~1.2 s):
@@ -21,7 +21,6 @@ import { useTransition } from "./TransitionContext";
 export function IntroAnimation() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const monogramRef = useRef<HTMLDivElement>(null);
-  const ruleRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -34,10 +33,9 @@ export function IntroAnimation() {
 
     const overlay = overlayRef.current;
     const monogram = monogramRef.current;
-    const rule = ruleRef.current;
     const tagline = taglineRef.current;
 
-    if (!overlay || !monogram || !rule || !tagline) return;
+    if (!overlay || !monogram || !tagline) return;
 
     document.body.style.overflow = "hidden";
 
@@ -51,7 +49,6 @@ export function IntroAnimation() {
     // Make overlay visible & positioned at yPercent: 0
     gsap.set(overlay, { yPercent: 0, opacity: 1, display: "flex" });
     gsap.set(monogram, { opacity: 0, scale: 0.78, y: 16 });
-    gsap.set(rule, { scaleX: 0, transformOrigin: "left center" });
     gsap.set(tagline, { opacity: 0, y: 18 });
 
     const tl = gsap.timeline({
@@ -72,17 +69,7 @@ export function IntroAnimation() {
         duration: 0.85,
         ease: "power3.out",
       })
-      // 3. Red rule sweeps
-      .to(
-        rule,
-        {
-          scaleX: 1,
-          duration: 0.65,
-          ease: "power2.inOut",
-        },
-        "-=0.25",
-      )
-      // 4. Tagline rises
+      // 3. Tagline rises
       .to(
         tagline,
         {
@@ -96,7 +83,7 @@ export function IntroAnimation() {
       // 5. Hold for a beat so the user reads it
       .to({}, { duration: 0.6 })
       // 6. Everything fades out
-      .to([monogram, rule, tagline], {
+      .to([monogram, tagline], {
         opacity: 0,
         y: -12,
         duration: 0.35,
@@ -123,10 +110,9 @@ export function IntroAnimation() {
   const runExit = useCallback(() => {
     const overlay = overlayRef.current;
     const monogram = monogramRef.current;
-    const rule = ruleRef.current;
     const tagline = taglineRef.current;
 
-    if (!overlay || !monogram || !rule || !tagline) {
+    if (!overlay || !monogram || !tagline) {
       onExitComplete();
       return;
     }
@@ -139,7 +125,6 @@ export function IntroAnimation() {
     // Reset overlay to come from bottom
     gsap.set(overlay, { yPercent: 100, opacity: 1, display: "flex" });
     gsap.set(monogram, { opacity: 0, scale: 0.78, y: 16 });
-    gsap.set(rule, { scaleX: 0, transformOrigin: "left center" });
     gsap.set(tagline, { opacity: 0, y: 18 });
 
     const tl = gsap.timeline({
@@ -161,11 +146,6 @@ export function IntroAnimation() {
         duration: 0.5,
         ease: "power3.out",
       }, "-=0.15")
-      .to(rule, {
-        scaleX: 1,
-        duration: 0.4,
-        ease: "power2.inOut",
-      }, "-=0.2")
       .to(tagline, {
         opacity: 1,
         y: 0,
@@ -180,7 +160,6 @@ export function IntroAnimation() {
   const runEnter = useCallback(() => {
     const overlay = overlayRef.current;
     const monogram = monogramRef.current;
-    const rule = ruleRef.current;
     const tagline = taglineRef.current;
 
     if (!overlay) {
@@ -203,7 +182,7 @@ export function IntroAnimation() {
 
     tl
       // Fade out inner elements
-      .to([monogram, rule, tagline].filter(Boolean), {
+      .to([monogram, tagline], {
         opacity: 0,
         y: -8,
         duration: 0.2,
@@ -274,9 +253,6 @@ export function IntroAnimation() {
           />
           <span className="intro-name">FrlAgee</span>
         </div>
-
-        {/* Brand-red horizontal rule */}
-        <div ref={ruleRef} className="intro-rule" />
 
         {/* Tagline */}
         <div ref={taglineRef} className="intro-tagline">

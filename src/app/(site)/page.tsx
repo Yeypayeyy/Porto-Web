@@ -8,7 +8,7 @@ import { Header } from "@/components/site/Header";
 export default function Home() {
   return (
     <main className="min-h-screen bg-bone text-ink">
-      <Header />
+      <Header dark />
       <HeroSection />
       <AboutSection />
       <ProjectsSection />

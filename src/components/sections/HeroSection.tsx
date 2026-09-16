@@ -33,7 +33,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-bone text-ink"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-bone"
     >
       <div className="relative z-10 mx-auto grid w-full max-w-[94rem] flex-1 items-center gap-10 px-6 pb-6 pt-24 md:px-12 md:pt-28 lg:grid-cols-[minmax(0,55fr)_minmax(0,45fr)] lg:gap-10">
         {/* Sits just above the optical centre so the composition reads
@@ -42,39 +42,25 @@ export function HeroSection() {
           <TextReveal
             as="h1"
             immediate
-            className="font-display text-[clamp(2.3rem,4.2vw,4.2rem)] font-black uppercase leading-[0.92] tracking-[-0.035em]"
+            className="font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[0.86] tracking-[-0.045em]"
           >
-            {/* Explicit line breaks: "systems that matter." is wider than the
-                column, so leaving it to wrap put the break in a different
-                place at every viewport width. */}
-            <span className="block overflow-hidden pb-[0.1em] pt-[0.04em]">
+            <span className="block w-max overflow-hidden pb-[0.12em] pt-[0.04em]">
               <span data-line className="block">
-                Building digital
-              </span>
-            </span>
-            <span className="block overflow-hidden pb-[0.1em] pt-[0.04em]">
-              <span data-line className="block text-rossoneri">
-                Systems
-              </span>
-            </span>
-            <span className="block overflow-hidden pb-[0.12em] pt-[0.04em]">
-              <span data-line className="block text-ink/80">
-                that matter.
+                Frlagee<span className="text-rossoneri">.</span>
               </span>
             </span>
           </TextReveal>
 
           <Reveal
             immediate
-            className="mt-9 max-w-[35rem] text-base leading-[1.75] text-ink/75"
+            className="mt-9 max-w-[35rem] text-base leading-[1.75] text-bone/75"
             delay={0.14}
           >
-            <strong className="font-semibold text-ink">
+            <strong className="font-semibold text-bone">
               Hi! I&apos;m Muhammad Farrel Al Ghazy.
             </strong>{" "}
-            Information Engineering student at Universitas Gadjah Mada and
-            fullstack developer focused on building web systems, leading teams,
-            and turning ideas into shipped products.
+            Information Engineering student at Universitas Gadjah Mada. I build
+            web systems and lead the teams that ship them.
           </Reveal>
 
           <Reveal
@@ -107,7 +93,7 @@ export function HeroSection() {
             <div className="flex items-center gap-7">
               <Link
                 href="/cv"
-                className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
+                className="hero-link-underline text-[0.95rem] font-medium text-bone/70 transition-colors duration-200 hover:text-bone"
               >
                 View CV ↗
               </Link>
@@ -115,7 +101,7 @@ export function HeroSection() {
                 href="https://github.com/Yeypayeyy"
                 target="_blank"
                 rel="noreferrer"
-                className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
+                className="hero-link-underline text-[0.95rem] font-medium text-bone/70 transition-colors duration-200 hover:text-bone"
               >
                 GitHub ↗
               </a>

@@ -99,8 +99,7 @@ export default function AboutPage() {
             <Reveal stagger className="mt-6 grid gap-x-10 gap-y-7 sm:grid-cols-2">
               {focusAreas.map((area) => (
                 <div key={area.title}>
-                  <span className="block h-[3px] w-10 bg-rossoneri" />
-                  <h3 className="mt-4 font-display text-xl font-black uppercase tracking-[-0.01em]">
+                  <h3 className="font-display text-xl font-black uppercase tracking-[-0.01em]">
                     {area.title}
                   </h3>
                   <p className="mt-2 text-[0.95rem] leading-[1.7] text-ink/70">
