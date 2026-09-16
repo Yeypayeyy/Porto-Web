@@ -24,8 +24,12 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <main className="min-h-screen bg-ink text-bone">
+    <main className="min-h-screen bg-bone">
       <Header dark />
+      {/* The black page body is its own panel so its rounded bottom can sit
+         over the footer. main carries bone underneath, otherwise the corners
+         would reveal black on black and the seam would not read. */}
+      <div className="relative z-10 rounded-b-[2rem] bg-ink text-bone shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] md:rounded-b-[3rem]">
       <section className="px-5 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
           <Link
@@ -127,7 +131,8 @@ export default async function ProjectDetailPage({
           </div>
         </div>
       </section>
-      <Footer />
+      </div>
+      <Footer overlap />
     </main>
   );
 }

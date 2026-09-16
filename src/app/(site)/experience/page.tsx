@@ -73,9 +73,13 @@ function StopPhoto({ stop, sizes }: { stop: Experience; sizes: string }) {
 
 export default function ExperiencePage() {
   return (
-    <main className="min-h-screen bg-ink text-bone">
+    <main className="min-h-screen bg-bone">
       <Header dark />
 
+      {/* The black page body is its own panel so its rounded bottom can sit
+         over the footer. main carries bone underneath, otherwise the corners
+         would reveal black on black and the seam would not read. */}
+      <div className="relative z-10 rounded-b-[2rem] bg-ink text-bone shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] md:rounded-b-[3rem]">
       <section className="px-6 pt-28 sm:px-10 sm:pt-32">
         <div className="mx-auto max-w-[94rem]">
           <p className="text-[0.72rem] font-black uppercase tracking-[0.28em] text-rossoneri">
@@ -239,7 +243,8 @@ export default function ExperiencePage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+      <Footer overlap />
     </main>
   );
 }
