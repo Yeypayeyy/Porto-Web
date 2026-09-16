@@ -19,7 +19,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative -mt-12 bg-ink px-6 pb-20 pt-32 text-bone md:-mt-16 md:px-12 md:pb-24 md:pt-40"
+      className="relative z-30 -mt-12 overflow-hidden rounded-b-[2rem] bg-ink px-6 pb-20 pt-32 text-bone shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] md:-mt-16 md:rounded-b-[3rem] md:px-12 md:pb-24 md:pt-40"
     >
       <div className="mx-auto max-w-[72rem]">
         <Reveal className="flex flex-wrap items-center justify-between gap-4 pb-8">
