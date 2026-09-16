@@ -12,9 +12,12 @@ const CV_PATH = "/cv-muhammad-farrel-al-ghazy.pdf";
 
 export default function CvPage() {
   return (
-    <main className="min-h-screen bg-bone text-ink">
+    <main className="min-h-screen bg-bone-soft">
       <Header />
 
+      {/* Same white-on-white seam as /about: the shadow and the bone-soft
+         ground behind the corners are all that make the overlap read. */}
+      <div className="relative z-10 rounded-b-[2rem] bg-bone text-ink shadow-[0_32px_60px_-30px_rgba(0,0,0,0.35)] md:rounded-b-[3rem]">
       <section className="px-6 pb-16 pt-28 md:px-12 md:pb-20 md:pt-36">
         <div className="mx-auto max-w-[64rem]">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -72,7 +75,8 @@ export default function CvPage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+      <Footer overlap />
     </main>
   );
 }

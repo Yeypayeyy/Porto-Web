@@ -43,9 +43,13 @@ const sectionTitle =
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-bone text-ink">
+    <main className="min-h-screen bg-bone-soft">
       <Header />
 
+      {/* Bone panel over bone-soft: this seam is white on white, so the
+         shadow and the slightly darker ground behind the corners are the
+         only things that make the overlap read at all. */}
+      <div className="relative z-10 rounded-b-[2rem] bg-bone text-ink shadow-[0_32px_60px_-30px_rgba(0,0,0,0.35)] md:rounded-b-[3rem]">
       <section className="px-6 pb-20 pt-28 md:px-12 md:pb-28 md:pt-36">
         <div className="mx-auto max-w-[48rem]">
           <div className="flex items-end justify-between gap-6">
@@ -151,7 +155,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
+      </div>
+      <Footer overlap />
     </main>
   );
 }
