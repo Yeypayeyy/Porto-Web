@@ -3,7 +3,6 @@ import Image from "next/image";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
-import { techStack } from "@/data/tech-icons";
 
 /** Ordered left→right. The coffee pose is the tallest, so it anchors the group. */
 const characterPoses = [
@@ -30,18 +29,11 @@ const characterPoses = [
   },
 ];
 
-/**
- * Rendered server-side, so the brand paths are inlined into the HTML and no
- * icon JS reaches the client. Lenis is used in the project but has no official
- * mark, so it is omitted rather than shown as the one bare label in the row.
- */
-const marquee = techStack;
-
 export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-bone text-ink"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-bone"
     >
       <div className="relative z-10 mx-auto grid w-full max-w-[94rem] flex-1 items-center gap-10 px-6 pb-6 pt-24 md:px-12 md:pt-28 lg:grid-cols-[minmax(0,55fr)_minmax(0,45fr)] lg:gap-10">
         {/* Sits just above the optical centre so the composition reads
@@ -50,39 +42,25 @@ export function HeroSection() {
           <TextReveal
             as="h1"
             immediate
-            className="font-display text-[clamp(2.3rem,4.2vw,4.2rem)] font-black uppercase leading-[0.92] tracking-[-0.035em]"
+            className="font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[0.86] tracking-[-0.045em]"
           >
-            {/* Explicit line breaks: "systems that matter." is wider than the
-                column, so leaving it to wrap put the break in a different
-                place at every viewport width. */}
-            <span className="block overflow-hidden pb-[0.1em] pt-[0.04em]">
+            <span className="block w-max overflow-hidden pb-[0.12em] pt-[0.04em]">
               <span data-line className="block">
-                Building digital
-              </span>
-            </span>
-            <span className="block overflow-hidden pb-[0.1em] pt-[0.04em]">
-              <span data-line className="block text-rossoneri">
-                Systems
-              </span>
-            </span>
-            <span className="block overflow-hidden pb-[0.12em] pt-[0.04em]">
-              <span data-line className="block text-ink/80">
-                that matter.
+                Frlagee<span className="text-rossoneri">.</span>
               </span>
             </span>
           </TextReveal>
 
           <Reveal
             immediate
-            className="mt-9 max-w-[35rem] text-base leading-[1.75] text-ink/75"
+            className="mt-9 max-w-[35rem] text-base leading-[1.75] text-bone/75"
             delay={0.14}
           >
-            <strong className="font-semibold text-ink">
-              Hi! I'm Muhammad Farrel Al Ghazy
+            <strong className="font-semibold text-bone">
+              Hi! I&apos;m Muhammad Farrel Al Ghazy.
             </strong>{" "}
-            — Information Technology student at Universitas Gadjah Mada and fullstack developer
-            focused on building web systems, leading teams, and turning ideas
-            into shipped products.
+            Information Engineering student at Universitas Gadjah Mada. I build
+            web systems and lead the teams that ship them.
           </Reveal>
 
           <Reveal
@@ -112,14 +90,22 @@ export function HeroSection() {
               </Link>
             </MagneticButton>
 
-            <a
-              href="https://github.com/Yeypayeyy"
-              target="_blank"
-              rel="noreferrer"
-              className="hero-link-underline text-[0.95rem] font-medium text-ink/70 transition-colors duration-200 hover:text-ink"
-            >
-              GitHub ↗
-            </a>
+            <div className="flex items-center gap-7">
+              <Link
+                href="/cv"
+                className="hero-link-underline text-[0.95rem] font-medium text-bone/70 transition-colors duration-200 hover:text-bone"
+              >
+                View CV ↗
+              </Link>
+              <a
+                href="https://github.com/Yeypayeyy"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-link-underline text-[0.95rem] font-medium text-bone/70 transition-colors duration-200 hover:text-bone"
+              >
+                GitHub ↗
+              </a>
+            </div>
           </Reveal>
         </div>
 
@@ -157,32 +143,6 @@ export function HeroSection() {
             </div>
           ))}
         </Reveal>
-      </div>
-
-      {/* Bottom marquee — the black structural block that closes the fold. */}
-      <div className="relative z-10 mt-6 overflow-hidden bg-ink py-4">
-        <div className="hero-marquee flex w-max items-center gap-8 whitespace-nowrap">
-          {[...marquee, ...marquee, ...marquee].map((item, i) => (
-            <span
-              key={i}
-              className="flex items-center gap-8 font-display text-2xl font-black uppercase tracking-[-0.01em] text-off-white md:text-3xl"
-            >
-              <span className="flex items-center gap-3">
-                {/* Monochrome so the band keeps to black / off-white / gold. */}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  className="h-5 w-5 shrink-0 md:h-6 md:w-6"
-                >
-                  <path d={item.path} />
-                </svg>
-                {item.label}
-              </span>
-              <span className="text-gold">✦</span>
-            </span>
-          ))}
-        </div>
       </div>
     </section>
   );

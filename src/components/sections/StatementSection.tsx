@@ -12,7 +12,6 @@ export function StatementSection() {
     >
       <div className="mx-auto w-full max-w-[80rem] px-6 md:px-12">
         <p className="mb-10 flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-ink/45">
-          <span className="h-px w-10 bg-rossoneri" />
           What I do
         </p>
         <ScrollFillText

@@ -68,7 +68,7 @@ export function Header({ dark = false }: { dark?: boolean }) {
           <Link
             href="/"
             className={`text-lg font-black uppercase tracking-[-0.02em] transition-opacity hover:opacity-70 ${t.brand}`}
-            aria-label="FrlAgee — home"
+            aria-label="FrlAgee, home"
             onClick={() => setIsMenuOpen(false)}
           >
             FrlAgee

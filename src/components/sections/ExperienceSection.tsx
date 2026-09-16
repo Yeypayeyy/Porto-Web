@@ -94,7 +94,7 @@ export function ExperienceSection() {
     <section
       id="experience"
       ref={root}
-      className="relative flex min-h-screen items-center overflow-hidden bg-ink py-24 pt-28 text-bone lg:h-screen lg:py-0 lg:pt-28"
+      className="relative z-10 flex min-h-screen items-center overflow-hidden rounded-b-[2rem] bg-ink shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] md:rounded-b-[3rem] py-24 pt-28 text-bone lg:h-screen lg:py-0 lg:pt-28"
     >
       {photos.map((photo) => (
         <span

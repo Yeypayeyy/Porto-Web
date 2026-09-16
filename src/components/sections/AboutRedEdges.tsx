@@ -8,7 +8,7 @@ import { prefersReducedMotion } from "@/components/motion/motion-config";
 /**
  * Rossoneri tide on the About panel. Two oversized ellipses sit just outside
  * the panel's top and bottom edges, so only their caps read as curves — the
- * top one meets the hero's tech-stack strip, the bottom one closes the panel.
+ * top one opens the panel under the hero, the bottom one closes it.
  *
  * The section pins while they swell in, so the reader cannot scroll past
  * until the motion resolves. Desktop only: pinning a full-height panel on a
@@ -86,7 +86,7 @@ export function AboutRedEdges() {
   }, []);
 
   return (
-    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0">
+    <div ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
       <div
         data-tide="top"
         className="absolute left-1/2 w-[180%] rounded-[50%] bg-rossoneri [will-change:transform]"

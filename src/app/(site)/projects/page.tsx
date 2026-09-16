@@ -31,7 +31,7 @@ export default function ProjectsPage() {
         </h1>
 
         <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-16 sm:mt-20 md:grid-cols-2">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <article key={project.slug}>
               <Link className="group block" href={`/projects/${project.slug}`}>
                 <div className="overflow-hidden rounded-xl bg-ink-soft">
@@ -41,15 +41,27 @@ export default function ProjectsPage() {
                       alt={project.title}
                       width={1200}
                       height={900}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      preload={index === 0}
                       className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                   ) : (
-                    <div className="aspect-[4/3] w-full" />
+                    <div
+                      aria-hidden="true"
+                      className="project-preview-grid flex aspect-[4/3] w-full items-center justify-center p-6 text-center text-3xl font-black text-white/20"
+                    >
+                      {project.title}
+                    </div>
                   )}
                 </div>
                 <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-bone sm:text-5xl">
                   {project.title}
                 </h2>
+                {project.tag === "On Progress" ? (
+                  <span className="mt-3 inline-block rounded-full border border-gold/50 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-gold">
+                    On Progress
+                  </span>
+                ) : null}
               </Link>
               <p className="mt-2 text-lg leading-snug text-bone/60 sm:text-xl">
                 {project.summary}

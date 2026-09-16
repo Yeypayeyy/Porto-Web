@@ -32,7 +32,7 @@ export function AboutSection() {
       id="about"
       /* `h-`, not `min-h-`: the panel pins below the header, so anything taller
          than the pin window (100vh − header) hangs off-screen and gets cut. */
-      className="relative flex flex-col justify-center overflow-hidden bg-bone px-6 py-20 text-ink md:h-[calc(100vh-4.6rem)] md:px-12 md:py-[max(4rem,9vh)]"
+      className="relative z-10 flex flex-col justify-center overflow-hidden rounded-b-[2rem] bg-bone px-6 py-20 shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] md:rounded-b-[3rem] text-ink md:h-[calc(100vh-4.6rem)] md:px-12 md:py-[max(4rem,9vh)]"
     >
       <AboutRedEdges />
 
@@ -57,8 +57,7 @@ export function AboutSection() {
           </div>
         </Reveal>
 
-        <div className="flex w-full items-center gap-6">
-          <span aria-hidden="true" className="h-px flex-1 bg-ink/15" />
+        <div className="flex w-full items-center justify-center">
           <TextReveal
             as="h2"
             className="font-display text-[clamp(1.9rem,4vw,3.1rem)] font-black uppercase leading-none tracking-[-0.035em]"
@@ -69,7 +68,6 @@ export function AboutSection() {
               </span>
             </span>
           </TextReveal>
-          <span aria-hidden="true" className="h-px flex-1 bg-ink/15" />
         </div>
 
         <Reveal
@@ -78,14 +76,14 @@ export function AboutSection() {
         >
           I&apos;m an{" "}
           <strong className="font-semibold text-ink">
-            IT student and fullstack developer
+            Information Engineering student and fullstack developer
           </strong>{" "}
           working across{" "}
           <span className="font-medium text-rossoneri">web development</span>,{" "}
           <span className="font-medium text-rossoneri">team leadership</span>,
           and{" "}
           <span className="font-medium text-rossoneri">event operations</span>.
-          I build systems that stay maintainable after launch — and lead the
+          I build systems that stay maintainable after launch, and I lead the
           teams that ship them.
         </Reveal>
 

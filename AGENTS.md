@@ -55,6 +55,7 @@ Jangan commit secrets.
 - `src/app/(site)/projects/[slug]/page.tsx`: detail project statis. Di Next 16 params dipakai sebagai `Promise<{ slug: string }>` dan di-`await`.
 - `src/app/(site)/experience/page.tsx`: halaman experience lengkap, memisahkan organisasi dan kepanitiaan.
 - `src/app/(site)/about/page.tsx`: halaman about sederhana.
+- `src/app/(site)/cv/page.tsx`: halaman `/cv`, menampilkan CV PDF (`public/cv-muhammad-farrel-al-ghazy.pdf`) dengan embed `<iframe>` di md ke atas dan kartu open/download di mobile, plus tombol download.
 - `src/app/(payload)/*`: route Payload admin, API, GraphQL, custom SCSS, import map.
 - `src/data/portfolio.ts`: sumber konten statis utama untuk project, experience, dan skills.
 - `src/components/sections/*`: section homepage.
@@ -75,6 +76,7 @@ Konten publik masih memakai data statis dari `src/data/portfolio.ts`, bukan fetc
 - `summary`
 - `points`
 - `image?`
+- `liveUrl?`
 - `detail`
 - `featured`
 
@@ -87,7 +89,7 @@ Konten publik masih memakai data statis dari `src/data/portfolio.ts`, bukan fetc
 - `description`
 - `accent`
 
-`skills` adalah array string.
+`skillGroups` adalah `{ label: string; items: string[] }[]`, dikelompokkan jadi Languages, Frameworks, Databases, Tools.
 
 Jika menambah project/experience yang muncul di homepage atau page detail, edit `src/data/portfolio.ts` dan pastikan asset image ada di `public/`.
 
@@ -114,9 +116,10 @@ Bagian ini hanya mendeskripsikan implementasi yang sedang ada untuk membantu nav
 
 - Header sticky gelap dengan brand `FrlAgee`, nav anchor ke homepage section, CTA email.
 - Hero memakai image background `/images/image 2.png`, overlay gelap, grid foto Farrel, CTA ke `/projects`, social links.
-- Projects section adalah client component karena carousel horizontal memakai state, refs, `scrollIntoView`, dan `requestAnimationFrame`.
+- `ProjectsSection` adalah server component yang merender bento grid berisi project `featured` saja (lead + 2 card + kartu "Explore All Projects"), bukan carousel client.
 - Experience section memakai banyak foto absolut sebagai memory collage. Hati-hati perubahan responsive karena banyak posisi absolute.
-- Contact/About section adalah band mint/aqua dengan contact cards lucide icons.
+- About section di homepage: red caps (`AboutRedEdges`) hanya tampil di md ke atas.
+- Contact band (`Footer`) memakai background bone dengan jersey-wing SVG (hanya tampil di lg ke atas) dan daftar contact dengan lucide icons.
 - Global CSS banyak custom animation. Jika class custom terlihat tidak ditemukan di TSX, cek `globals.css` sebelum menghapus.
 
 ## Asset Public
@@ -138,6 +141,7 @@ Catatan penting: Windows tidak case-sensitive, tetapi deploy Linux biasanya case
 - `/projects/[slug]`: detail project dari `src/data/portfolio.ts`
 - `/experience`: detail experience
 - `/about`: about
+- `/cv`: CV PDF, embed di md ke atas, kartu open/download di mobile
 - `/admin`: Payload admin
 - `/api/[...slug]`: Payload API
 - `/graphql` dan `/graphql-playground`: Payload GraphQL
@@ -148,6 +152,7 @@ Catatan penting: Windows tidak case-sensitive, tetapi deploy Linux biasanya case
 - Gunakan `next/image` untuk gambar public.
 - Gunakan `next/link` untuk navigasi internal.
 - Gunakan lucide-react untuk icon baru jika cocok.
+- Jangan pakai em dash (—) di visitor-facing copy (text, metadata, alt, aria-label). Komentar code boleh tetap pakai.
 - Jaga perubahan tetap scoped. Jangan refactor besar kecuali diminta.
 - Untuk route group path di PowerShell, pakai `-LiteralPath`, contoh:
 
@@ -158,7 +163,6 @@ Get-Content -Raw -LiteralPath 'src\app\(site)\projects\[slug]\page.tsx'
 ## Known Things To Be Careful About
 
 - `src/app/(site)/projects/[slug]/page.tsx` memakai pola params async. Jangan ubah ke pola Next lama tanpa cek docs lokal.
-- `ProjectsSection.tsx` harus tetap `"use client"` karena memakai hooks dan DOM scrolling.
 - `globals.css` memuat banyak custom animation dan class yang dipakai across sections.
 - `FocusSection.tsx` ada tetapi belum dipakai di homepage.
 - README masih default create-next-app, jadi `AGENTS.md` lebih berguna untuk konteks project.
@@ -180,13 +184,15 @@ Contacts:
 - LinkedIn: `https://www.linkedin.com/in/farrel-ag`
 - Instagram: `https://www.instagram.com/frlagee`
 
-Featured/static projects include:
+Static projects include (in order):
 
-- Portfolio Web System
-- KMTETI Website
+- Catet!
+- KMTETI FT UGM Website
+- SunCost
 - Campaign Web
-- Event Logistics Operating Flow
-- Partnership Pipeline Framework
+- FoundIT! (On Progress)
+
+Featured on homepage: Catet!, KMTETI FT UGM Website, SunCost.
 
 Experience includes:
 

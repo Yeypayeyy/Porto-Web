@@ -192,19 +192,6 @@ button {
   font: inherit;
 }
 
-.hero-marquee {
-  animation: hero-marquee-scroll 55s linear infinite;
-}
-
-@keyframes hero-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-33.333%);
-  }
-}
-
 .hero-link-underline {
   position: relative;
 }
@@ -1366,13 +1353,6 @@ button {
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1;
-}
-
-.intro-rule {
-  background: linear-gradient(90deg, var(--rossoneri), var(--rossoneri-deep));
-  height: 2px;
-  width: clamp(3rem, 10vw, 6.5rem);
-  will-change: transform;
 }
 
 .intro-tagline {

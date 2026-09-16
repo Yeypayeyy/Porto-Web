@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Download, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 /* lucide v1 sudah menghapus brand icon, jadi logo asli dipakai sebagai inline SVG (simple-icons paths). */
 type BrandProps = { className?: string };
@@ -55,11 +55,14 @@ const contactLinks = [
   },
 ];
 
-export function Footer() {
+/** `overlap`: slide up under a section with rounded bottom corners (homepage). */
+export function Footer({ overlap = false }: { overlap?: boolean }) {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-bone px-6 py-16 text-ink md:px-12 md:py-20"
+      className={`relative overflow-hidden bg-bone px-6 pb-16 text-ink md:px-12 md:pb-20 ${
+        overlap ? "-mt-12 pt-28 md:-mt-16 md:pt-36" : "pt-16 md:pt-20"
+      }`}
     >
       {/* Red jersey-wing geometry with gold champion trim (desktop margins only) */}
       <svg
@@ -80,18 +83,23 @@ export function Footer() {
           strokeWidth="2.5"
           opacity="0.8"
         />
-        <path
-          d="M0 900 L0 690 C 120 750 150 860 60 900 Z"
-          fill="var(--rossoneri)"
-          opacity="0.9"
-        />
+      </svg>
+      {/* Fixed-size corner swoosh, not part of the stretched SVG above: stretched,
+          it grew with the section and ran into the CTA buttons. Kept under
+          4.5rem tall so it stays below them. */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 hidden h-[4.5rem] w-40 lg:block"
+        viewBox="0 0 160 72"
+        fill="none"
+      >
+        <path d="M0 72 V8 C 60 20 120 50 150 72 Z" fill="var(--rossoneri)" opacity="0.9" />
       </svg>
 
       <div className="relative z-10 mx-auto max-w-[80rem]">
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:pr-[8%]">
-          <div className="max-w-xl">
-            <Reveal className="mb-5 flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.34em] text-gold">
-              <span className="h-px w-10 bg-gold" />
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-16 lg:pr-[8%]">
+          <div className="min-w-0 max-w-xl">
+            <Reveal className="mb-5 text-[0.7rem] font-semibold uppercase tracking-[0.34em] text-gold">
               Get in touch
             </Reveal>
             <TextReveal
@@ -131,14 +139,13 @@ export function Footer() {
                 </Link>
               </MagneticButton>
               <MagneticButton>
-                {/* ponytail: href masih placeholder, isi path CV kalau filenya sudah ada di public/ */}
                 <Link
-                  href="#"
+                  href="/cv"
                   className="group inline-flex items-center gap-3 rounded-full border border-ink/20 px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-bone"
                 >
-                  Download CV
-                  <Download
-                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                  View CV
+                  <ArrowUpRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
                 </Link>
@@ -146,7 +153,7 @@ export function Footer() {
             </div>
           </div>
 
-          <Reveal stagger className="flex flex-col">
+          <Reveal stagger className="flex min-w-0 flex-col">
             {contactLinks.map((item) => (
               <a
                 key={item.href}

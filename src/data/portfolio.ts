@@ -24,55 +24,83 @@ export type Experience = {
 
 export const projects: Project[] = [
   {
-    slug: "portfolio-web-system",
-    title: "Portfolio Web ",
+    slug: "catet",
+    title: "Catet!",
     tag: "Featured",
-    status: "Frontend / UI-UX",
+    status: "Fullstack / Fintech",
     summary:
-      "Personal portfolio built as a clean consulting-style profile for projects, experience, and professional identity.",
-    points: ["Dark editorial hero", "Project filtering", "Responsive section bands"],
-    image: "/Project/porto.webp",
-    liveUrl: "#", // TODO: ganti ke URL live project
+      "Personal finance tracker that records itself. Pay with QRIS, the m-banking notification is captured automatically, and the only thing left is one tap to pick a category.",
+    points: ["Next.js", "Supabase", "Drizzle ORM", "Kotlin"],
+    image: "/Project/catet.png",
     detail: [
-      "Built as a personal portfolio system that balances visual identity, professional storytelling, and a fast browsing experience.",
-      "Structured the site around reusable section components, responsive layouts, and project/experience data that can keep growing over time.",
-      "Focused on making the homepage feel distinctive while keeping the project and experience pages easy to scan.",
+      "Built around two everyday problems: forgetting to log spending, and retyping amounts that the bank notification already shows.",
+      "An Android companion captures myBCA notifications and sends them to an ingest API. The raw payload is stored first, then a parser reads the amount and direction and saves the transaction with an empty category.",
+      "A notification comes back to the phone with three category buttons, so logging finishes in one tap without opening any app. When a notification cannot be parsed, no transaction is created and the raw payload is kept for review.",
     ],
     featured: true,
   },
   {
     slug: "kmteti-website",
-    title: "KMTETI Website",
+    title: "KMTETI FT UGM Website",
     tag: "Featured",
-    status: "Frontend / Web Development",
+    status: "Fullstack / Web Development",
     summary:
-      "Official organization website for KMTETI FT UGM, built to present profile information, divisions, activities, services, and news in a clear digital experience.",
-    points: ["Next.js", "Tailwind CSS", "TypeScript"],
-    image: "/Project/Screenshot 2026-05-27 014658.png",
-    liveUrl: "#", // TODO: ganti ke URL live project
+      "Official web portal of KMTETI FT UGM: organization news, cabinet profile, division and program directory, national events, and academic services in one place.",
+    points: ["Next.js", "Payload CMS", "PostgreSQL", "GSAP"],
+    image: "/Project/kmteti-website.png",
     detail: [
-      "Designed to help students, members, and external visitors understand KMTETI through a clear digital presence.",
-      "Organized organization profile, divisions, activities, services, and news into a website structure that feels direct and maintainable.",
-      "Prioritized responsive UI and readable content hierarchy so the site works well across desktop and mobile visits.",
+      "Serves as the information hub for students of Electrical Engineering and Information Technology at FT UGM, from activity news to service requests.",
+      "Content is managed through Payload CMS on PostgreSQL, with media stored on Supabase storage, so the team can publish without touching code.",
+      "Built with the Next.js App Router, Tailwind CSS v4, and GSAP ScrollTrigger for motion, with a responsive layout for both desktop and mobile visitors.",
+    ],
+    featured: true,
+  },
+  {
+    slug: "suncost",
+    title: "SunCost",
+    tag: "Featured",
+    status: "Desktop App / Software Architecture",
+    summary:
+      "Windows desktop app that estimates rooftop solar potential, electricity savings, and payback time from the solar radiation data of the user's location.",
+    points: ["C#", "WPF", "SQLite", "Weather API"],
+    image: "/Project/suncost-energi.png",
+    detail: [
+      "Indonesia receives some of the highest solar radiation in the world, yet rooftop solar adoption stays low because people cannot tell how much their roof would produce or when the investment pays back.",
+      "Users enter their location, roof area, orientation, and tilt. SunCost combines weather API radiation data with panel specs and electricity tariffs to show energy output, savings, and payback period.",
+      "Led the team as software architect, designing the class structure and the split between views, models, and services in a C# WPF app with a local SQLite database.",
     ],
     featured: true,
   },
   {
     slug: "campaign-web",
     title: "Campaign Web",
-    tag: "Featured",
+    tag: "Project",
     status: "Frontend / UI-UX",
     summary:
-      "Campaign website designed to present candidate profile, vision and mission, experience, work programs, gallery, testimonials, and contact information in one focused page.",
+      "Campaign website that presents a candidate's profile, vision and mission, experience, work programs, gallery, testimonials, and contact in one focused page.",
     points: ["Next.js", "Tailwind CSS", "TypeScript"],
     image: "/Project/Screenshot 2026-05-27 020810.png",
-    liveUrl: "#", // TODO: ganti ke URL live project
     detail: [
       "Built as a focused campaign page that introduces a candidate and gives visitors a complete path through profile, vision, programs, and contact.",
-      "Composed the content into sections that support quick scanning while still giving enough depth for voters who want more context.",
-      "Used a responsive visual system so gallery, testimonials, and program information stay polished on small screens.",
+      "Content is composed into sections that are quick to scan while still giving enough depth for voters who want more context.",
+      "Uses a responsive visual system so the gallery, testimonials, and program information stay polished on small screens.",
     ],
-    featured: true,
+    featured: false,
+  },
+  {
+    slug: "foundit",
+    title: "FoundIT!",
+    tag: "On Progress",
+    status: "AI / Backend",
+    summary:
+      "Lost and found platform that matches reports of lost and found items using image and text similarity.",
+    points: ["Python", "FastAPI", "scikit-learn", "Computer Vision + NLP"],
+    detail: [
+      "Still in development. FoundIT! helps people report lost or found items and surfaces likely matches instead of making them scroll through every post.",
+      "The AI matching service runs separately from the main backend as a FastAPI app. It scores visual similarity between two photos, text similarity between two descriptions, and combines both into one confidence score.",
+      "The backend uses that confidence score to decide whether two reports probably describe the same item.",
+    ],
+    featured: false,
   },
 ];
 
@@ -189,11 +217,22 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const skills = [
-  "Team Management",
-  "Marketing Strategy",
-  "Marketing",
-  "Python Essentials 1",
-  "Logistics Coordination",
-  "Partnership Management",
+/** Grouped for /about. Every item comes from a shipped or in-progress project. */
+export const skillGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "C#", "Kotlin", "SQL"],
+  },
+  {
+    label: "Frameworks",
+    items: ["Next.js", "React", "Tailwind CSS", "Payload CMS", "FastAPI", "WPF", "GSAP", "Framer Motion"],
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL", "Supabase", "Drizzle ORM", "SQLite"],
+  },
+  {
+    label: "Tools",
+    items: ["Git/GitHub", "Vercel", "pnpm", "Figma"],
+  },
 ];
