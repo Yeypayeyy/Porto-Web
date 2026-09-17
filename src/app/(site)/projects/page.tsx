@@ -47,12 +47,12 @@ export default function ProjectsPage() {
                       height={900}
                       sizes="(min-width: 768px) 50vw, 100vw"
                       preload={index === 0}
-                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      className="aspect-[16/10] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                   ) : (
                     <div
                       aria-hidden="true"
-                      className="project-preview-grid flex aspect-[4/3] w-full items-center justify-center p-6 text-center text-3xl font-black text-white/20"
+                      className="project-preview-grid flex aspect-[16/10] w-full items-center justify-center p-6 text-center text-3xl font-black text-white/20"
                     >
                       {project.title}
                     </div>

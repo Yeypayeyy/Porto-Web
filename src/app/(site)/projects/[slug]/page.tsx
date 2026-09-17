@@ -100,16 +100,15 @@ export default async function ProjectDetailPage({
 
           <div className="mt-12 overflow-hidden rounded-[12px] bg-[#050706] ring-1 ring-white/10">
             {project.image ? (
-              <div className="relative min-h-[320px] md:min-h-[560px]">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  fill
-                  preload
-                  sizes="(min-width: 768px) 1100px, calc(100vw - 2.5rem)"
-                  className="object-cover object-top"
-                />
-              </div>
+              <Image
+                src={project.image}
+                alt={`${project.title} preview`}
+                width={1600}
+                height={1000}
+                preload
+                sizes="(min-width: 768px) 1100px, calc(100vw - 2.5rem)"
+                className="block h-auto w-full"
+              />
             ) : (
               <div className="project-preview-grid relative min-h-[320px]">
                 <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 text-center text-4xl font-black leading-tight text-white/20 md:text-6xl">
