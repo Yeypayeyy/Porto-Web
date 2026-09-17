@@ -32,6 +32,7 @@ export const projects: Project[] = [
       "Personal finance tracker that records itself. Pay with QRIS, the m-banking notification is captured automatically, and the only thing left is one tap to pick a category.",
     points: ["Next.js", "Supabase", "Drizzle ORM", "Kotlin"],
     image: "/Project/catet.png",
+    liveUrl: "https://catet-xi.vercel.app",
     detail: [
       "Built around two everyday problems: forgetting to log spending, and retyping amounts that the bank notification already shows.",
       "An Android companion captures myBCA notifications and sends them to an ingest API. The raw payload is stored first, then a parser reads the amount and direction and saves the transaction with an empty category.",
@@ -48,6 +49,7 @@ export const projects: Project[] = [
       "Official web portal of KMTETI FT UGM: organization news, cabinet profile, division and program directory, national events, and academic services in one place.",
     points: ["Next.js", "Payload CMS", "PostgreSQL", "GSAP"],
     image: "/Project/kmteti-website.png",
+    liveUrl: "https://kmteti.org",
     detail: [
       "Serves as the information hub for students of Electrical Engineering and Information Technology at FT UGM, from activity news to service requests.",
       "Content is managed through Payload CMS on PostgreSQL, with media stored on Supabase storage, so the team can publish without touching code.",
@@ -80,6 +82,7 @@ export const projects: Project[] = [
       "Campaign website that presents a candidate's profile, vision and mission, experience, work programs, gallery, testimonials, and contact in one focused page.",
     points: ["Next.js", "Tailwind CSS", "TypeScript"],
     image: "/Project/Screenshot 2026-05-27 020810.png",
+    liveUrl: "https://ag-campaign-web.vercel.app",
     detail: [
       "Built as a focused campaign page that introduces a candidate and gives visitors a complete path through profile, vision, programs, and contact.",
       "Content is composed into sections that are quick to scan while still giving enough depth for voters who want more context.",
@@ -94,7 +97,8 @@ export const projects: Project[] = [
     status: "AI / Backend",
     summary:
       "Lost and found platform that matches reports of lost and found items using image and text similarity.",
-    points: ["Python", "FastAPI", "scikit-learn", "Computer Vision + NLP"],
+    points: ["React", "TypeScript", "Python", "FastAPI", "Computer Vision + NLP"],
+    image: "/Project/foundit.png",
     detail: [
       "Still in development. FoundIT! helps people report lost or found items and surfaces likely matches instead of making them scroll through every post.",
       "The AI matching service runs separately from the main backend as a FastAPI app. It scores visual similarity between two photos, text similarity between two descriptions, and combines both into one confidence score.",
